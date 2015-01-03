@@ -15,14 +15,16 @@ public class PlayerMovement : MonoBehaviour {
 	Transform forkTransform;
 	Vector2 inputForce;
 	Vector2 forkMovement;
-	float maxForkHeight;
-	float minForkHeight;
+	Transform socketForkPosition;
+	Transform socketForkTop;
+	Transform socketForkBottom;
 	
 	void Awake () {
 		playerRigidBody = GetComponent<Rigidbody2D> ();
 		forkTransform = transform.FindChild ("ForkliftFork");
-		maxForkHeight = transform.FindChild ("SocketForkTop").transform.position.y;
-		minForkHeight = transform.FindChild ("SocketForkBottom").transform.position.y;
+		socketForkPosition = forkTransform.FindChild("SocketForkPosition");
+		socketForkTop = transform.FindChild ("SocketForkTop");
+		socketForkBottom = transform.FindChild ("SocketForkBottom");
 
 		inputForce = new Vector2 (0.0f, 0.0f);
 		forkMovement = new Vector2 (0.0f, 0.0f);
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 		forkMovement.x = 0.0f;
 		forkMovement.y = 0.0f;
 
-		float currForkHeight = forkTransform.position.y;
+		float currForkHeight = socketForkPosition.position.y;
 
 		if (Input.GetKey(KeyCode.RightArrow)) 
 		{
@@ -45,11 +47,11 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			inputForce.x -= playerSpeed;
 		}
-		if (Input.GetKey(KeyCode.UpArrow) && currForkHeight < maxForkHeight) 
+		if (Input.GetKey(KeyCode.UpArrow) && currForkHeight < socketForkTop.position.y) 
 		{
 			forkMovement.y = forkSpeed * Time.deltaTime;
 		}
-		if (Input.GetKey (KeyCode.DownArrow) && currForkHeight > minForkHeight) 
+		if (Input.GetKey (KeyCode.DownArrow) && currForkHeight > socketForkBottom.position.y) 
 		{
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
