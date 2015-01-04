@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: 26ee4a997339ad347b3f231ca69db3ba
+guid: 9e5837480a30fbb4988d2c2619b48951
 TextureImporter:
   fileIDToRecycleName:
-    21300000: t_zombie1_0
-    21300002: t_zombie1_1
-    21300004: t_zombie1_2
-    21300006: t_zombie1_3
-    21300008: t_zombie1_4
-    21300010: t_zombie1_5
-    21300012: t_zombie1_6
-    21300014: t_zombie1_7
+    21300000: t_zombie2_0
+    21300002: t_zombie2_1
+    21300004: t_zombie2_2
+    21300006: t_zombie2_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,7 +47,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: t_zombie1_0
+    - name: t_zombie2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -61,7 +57,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: t_zombie1_1
+    - name: t_zombie2_1
       rect:
         serializedVersion: 2
         x: 200
@@ -71,27 +67,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: t_zombie1_2
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 180
-        width: 200
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: t_zombie1_3
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 180
-        width: 200
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: t_zombie1_4
+    - name: t_zombie2_2
       rect:
         serializedVersion: 2
         x: 0
@@ -101,30 +77,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: t_zombie1_5
+    - name: t_zombie2_3
       rect:
         serializedVersion: 2
         x: 200
-        y: 0
-        width: 200
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: t_zombie1_6
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 200
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: t_zombie1_7
-      rect:
-        serializedVersion: 2
-        x: 600
         y: 0
         width: 200
         height: 180
