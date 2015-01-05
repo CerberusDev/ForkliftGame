@@ -18,13 +18,13 @@ public class ZombieCollision : MonoBehaviour {
 	}
 
 	void KillZombie() {
-		//foreach (Collider c in GetComponentInChildren<Collider>())
-		//	c.enabled = false;
+		int deadEnemyLayer = LayerMask.NameToLayer("DeadEnemy");
 
-		//transform.FindChild ("ZombieHead").GetComponent<Collider2D> ().enabled = false;
-		//transform.FindChild ("ZombieNeck").GetComponent<Collider2D> ().enabled = false;
-		//transform.FindChild ("ZombieTorso").GetComponent<Collider2D> ().enabled = false;
-		//transform.FindChild ("ZombieLegs").GetComponent<Collider2D> ().enabled = false;
+		gameObject.layer = deadEnemyLayer;
+		transform.FindChild ("ZombieLegs").gameObject.layer = deadEnemyLayer;
+		transform.FindChild ("ZombieHead").gameObject.layer = deadEnemyLayer;
+		transform.FindChild ("ZombieNeck").gameObject.layer = deadEnemyLayer;
+		transform.FindChild ("ZombieTorso").gameObject.layer = deadEnemyLayer;
 
 		anim.SetTrigger ("Death");
 		zombieMovementScript.OnDeath();
