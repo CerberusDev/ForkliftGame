@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿// Forklift Game
+//
+// Script author: Maciej Pryc
+// Created: 2015/01/06
+
+using UnityEngine;
 using System.Collections;
 
 public class ZombieNeckCollision : MonoBehaviour {
