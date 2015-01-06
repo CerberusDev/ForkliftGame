@@ -12,6 +12,7 @@ public class ZombieCollision : MonoBehaviour {
 
 	Animator anim;
 	ZombieMovement zombieMovementScript;
+	Transform socketHeadSpawnPoint;
 
 	float destroyDelay = 10.0f;
 	bool bAttack = false;
@@ -19,6 +20,7 @@ public class ZombieCollision : MonoBehaviour {
 	void Start () {
 		anim = GetComponent<Animator> ();
 		zombieMovementScript = GetComponent<ZombieMovement> ();
+		socketHeadSpawnPoint = transform.FindChild ("SocketHeadSpawnPoint");
 	}
 
 	public void OnHeadCollision(Collision2D coll) {
@@ -39,11 +41,11 @@ public class ZombieCollision : MonoBehaviour {
 
 	public void OnNeckCollision(Collision2D coll) {
 		if (coll.collider.gameObject.tag == "Fork") {
-			KillZombie(true);
+			KillZombie(true, coll.relativeVelocity.magnitude);
 		}
 	}
 
-	void KillZombie(bool bHeadless = false) {
+	void KillZombie(bool bHeadless = false, float headThrowPower = 0.0f) {
 		int deadEnemyLayer = LayerMask.NameToLayer("DeadEnemy");
 
 		gameObject.layer = deadEnemyLayer;
@@ -54,8 +56,14 @@ public class ZombieCollision : MonoBehaviour {
 
 		if (bHeadless) {
 			anim.SetTrigger ("HeadlessDeath");
-			GameObject head = (GameObject)Instantiate(zombieHeadPrefab, transform.position, transform.rotation);
-			head.GetComponent<Rigidbody2D>().AddForce(new Vector2(150.0f, 300.0f));
+
+			GameObject head = (GameObject)Instantiate(zombieHeadPrefab, 
+			                                          socketHeadSpawnPoint.position, 
+			                                          socketHeadSpawnPoint.rotation);
+
+			Rigidbody2D headRigidbody2D = head.GetComponent<Rigidbody2D>();
+			headRigidbody2D.AddForce(new Vector2(25.0f * headThrowPower, 50.0f * headThrowPower));
+			headRigidbody2D.AddTorque(Random.Range(-5.0f, 20.0f));
 		} else {
 			anim.SetTrigger ("Death");
 		}
