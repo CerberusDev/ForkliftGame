@@ -5,7 +5,9 @@ public class ZombieCollision : MonoBehaviour {
 
 	Animator anim;
 	ZombieMovement zombieMovementScript;
-	bool bAttack;
+
+	float destroyDelay = 10.0f;
+	bool bAttack = false;
 
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -39,5 +41,7 @@ public class ZombieCollision : MonoBehaviour {
 
 		anim.SetTrigger ("Death");
 		zombieMovementScript.EnableMovement (false);
+
+		Destroy (gameObject, destroyDelay);
 	}
 }
