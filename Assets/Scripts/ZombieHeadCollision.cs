@@ -12,4 +12,8 @@ public class ZombieHeadCollision : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll) {
 		zombieCollisionScript.OnHeadCollision (coll);
 	}
+
+	void OnCollisionExit2D(Collision2D coll) {
+		zombieCollisionScript.OnHeadCollisionOff (coll);
+	}
 }

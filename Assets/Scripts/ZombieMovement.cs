@@ -12,7 +12,7 @@ public class ZombieMovement : MonoBehaviour {
 	
 	Transform zombieTransform;
 	Vector2 speedVector;
-	bool bIsAlive = true;
+	bool bShouldMove = true;
 	//Vector2 gravityVector;
 	
 	void Awake () {
@@ -27,15 +27,15 @@ public class ZombieMovement : MonoBehaviour {
 		//zombieRigidBody.AddForce (speedVector);
 		//zombieRigidBody.position += speedVector * Time.deltaTime;
 		//zombieRigidBody.MovePosition (zombieRigidBody.position + (speedVector + gravityVector) * Time.deltaTime);
-		if (bIsAlive)
+		if (bShouldMove)
 			zombieTransform.Translate (speedVector * Time.deltaTime);
 	}
 
-	public void OnDeath() {
-		bIsAlive = false;
+	public void EnableMovement(bool newMovementState) {
+		bShouldMove = newMovementState;
 	}
 
-	public bool IsAlive() {
-		return bIsAlive;
+	public bool ShouldMove() {
+		return bShouldMove;
 	}
 }

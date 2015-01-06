@@ -5,6 +5,7 @@ public class ZombieCollision : MonoBehaviour {
 
 	Animator anim;
 	ZombieMovement zombieMovementScript;
+	bool bAttack;
 
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -12,8 +13,18 @@ public class ZombieCollision : MonoBehaviour {
 	}
 
 	public void OnHeadCollision(Collision2D coll) {
-		if (coll.collider.gameObject.tag == "Fork" && zombieMovementScript.IsAlive ()) {
+		if (coll.collider.gameObject.tag == "Fork") {
 			KillZombie();
+		} else if (coll.collider.gameObject.tag == "Player") {
+			bAttack = true;
+			anim.SetBool("Attack", true);
+		}
+	}
+
+	public void OnHeadCollisionOff(Collision2D coll) {
+		if (bAttack) {
+			bAttack = false;
+			anim.SetBool("Attack", false);
 		}
 	}
 
@@ -27,6 +38,6 @@ public class ZombieCollision : MonoBehaviour {
 		transform.FindChild ("ZombieTorso").gameObject.layer = deadEnemyLayer;
 
 		anim.SetTrigger ("Death");
-		zombieMovementScript.OnDeath();
+		zombieMovementScript.EnableMovement (false);
 	}
 }
