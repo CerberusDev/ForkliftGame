@@ -12,7 +12,7 @@ public class ZombieCollision : MonoBehaviour {
 	}
 
 	public void OnHeadCollision(Collision2D coll) {
-		if (zombieMovementScript.IsAlive ()) {
+		if (coll.collider.gameObject.tag == "Fork" && zombieMovementScript.IsAlive ()) {
 			KillZombie();
 		}
 	}
