@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ZombieCollision : MonoBehaviour {
 
+	public GameObject zombieHeadPrefab;
+
 	Animator anim;
 	ZombieMovement zombieMovementScript;
 
@@ -30,7 +32,13 @@ public class ZombieCollision : MonoBehaviour {
 		}
 	}
 
-	void KillZombie() {
+	public void OnNeckCollision(Collision2D coll) {
+		if (coll.collider.gameObject.tag == "Fork") {
+			KillZombie(true);
+		}
+	}
+
+	void KillZombie(bool bHeadless = false) {
 		int deadEnemyLayer = LayerMask.NameToLayer("DeadEnemy");
 
 		gameObject.layer = deadEnemyLayer;
@@ -39,7 +47,14 @@ public class ZombieCollision : MonoBehaviour {
 		transform.FindChild ("ZombieNeck").gameObject.layer = deadEnemyLayer;
 		transform.FindChild ("ZombieTorso").gameObject.layer = deadEnemyLayer;
 
-		anim.SetTrigger ("Death");
+		if (bHeadless) {
+			anim.SetTrigger ("HeadlessDeath");
+			GameObject head = (GameObject)Instantiate(zombieHeadPrefab, transform.position, transform.rotation);
+			head.GetComponent<Rigidbody2D>().AddForce(new Vector2(150.0f, 300.0f));
+		} else {
+			anim.SetTrigger ("Death");
+		}
+
 		zombieMovementScript.EnableMovement (false);
 
 		Destroy (gameObject, destroyDelay);
