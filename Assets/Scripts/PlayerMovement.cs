@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
-		print (playerRigidBody.velocity.x);
+		//print (playerRigidBody.velocity.x);
 
 		//move fork
 		forkTransform.Translate(forkMovement);
