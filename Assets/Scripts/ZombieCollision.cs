@@ -88,11 +88,11 @@ public class ZombieCollision : MonoBehaviour {
 		myTransform.parent = null;
 	}
 
-	bool IsAMortalWound(float hitStrength = 0.0f) {
+	bool IsAMortalWound(float hitStrength) {
 		return (hitStrength > 1.0f);	
 	}
 
-	void KillZombie(BodyZone woundZone, float hitStrength = 0.0f) {
+	void KillZombie(BodyZone woundZone, float hitStrength) {
 		int deadEnemyLayer = LayerMask.NameToLayer("DeadEnemy");
 
 		gameObject.layer = deadEnemyLayer;
