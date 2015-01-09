@@ -62,7 +62,7 @@ public class ZombieCollision : MonoBehaviour {
 			KillZombie (BodyZone.TORSO, hitStrength);
 			Destroy (rigidbody2D);
 			myTransform.Translate(new Vector2(0.0f, 0.02f));
-			Invoke ("AttachToFork", 0.1f);
+			Invoke ("AttachToFork", Random.Range(0.1f, 0.2f));
 		}
 	}
 
@@ -113,7 +113,8 @@ public class ZombieCollision : MonoBehaviour {
 			                                          socketHeadSpawnPoint.rotation);
 			
 			Rigidbody2D headRigidbody2D = head.GetComponent<Rigidbody2D>();
-			headRigidbody2D.AddForce(new Vector2(25.0f * hitStrength, 50.0f * hitStrength));
+			headRigidbody2D.AddForce(new Vector2(Random.Range(15.0f, 35.0f) * hitStrength, 
+			                                     Random.Range(40.0f, 60.0f) * hitStrength));
 			headRigidbody2D.AddTorque(Random.Range(-5.0f, 20.0f));
 
 			Destroy (gameObject, destroyDelay);
