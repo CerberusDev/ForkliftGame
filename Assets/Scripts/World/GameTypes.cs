@@ -10,11 +10,18 @@ public class GameTypes : MonoBehaviour {
 
 	public enum DamageType
 	{
+		Default,
 		Zombie_Melee,
 		Zombie_Pistol,
 		Player_Tool,
 		Player_Fork,
 		World_Barrel
+	}
+
+	public enum AttackModes
+	{
+		Primary,
+		Secondary
 	}
 
 	// Use this for initialization

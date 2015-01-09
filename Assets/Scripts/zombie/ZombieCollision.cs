@@ -23,11 +23,15 @@ public class ZombieCollision : MonoBehaviour {
 	bool bPierced = false;
 	bool bAlive = true;
 
+	CanAttack offensive;
+
 	void Start () {
 		anim = GetComponent<Animator> ();
 		zombieMovementScript = GetComponent<ZombieMovement> ();
 		socketHeadSpawnPoint = transform.FindChild ("SocketHeadSpawnPoint");
 		myTransform = transform;
+
+		offensive = GetComponent<CanAttack> ();
 	}
 
 	public void OnHeadCollision(Collision2D coll) {
@@ -37,6 +41,7 @@ public class ZombieCollision : MonoBehaviour {
 		} else if (coll.collider.gameObject.tag == "Player") {
 			bAttack = true;
 			anim.SetBool("Attack", true);
+			offensive.GiveDamageTo(0,coll.collider.gameObject);
 		}
 	}
 
