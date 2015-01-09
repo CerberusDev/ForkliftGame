@@ -10,10 +10,18 @@ public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody2D playerRigidBody;
 
+	//////////////// 
+	// MOVEMENT PLAYER
+	////////////////
+
 	public float movementSpeed = 4300;
 	Vector2 movementForce;
 	bool bWasLastDirectionRight;
 	public float changeDirectionTreshold = 2.0f;
+
+	//////////////// 
+	// MOVEMENT FORK
+	////////////////
 
 	public float forkSpeed = 2.0f;
 	Vector2 forkMovement;
@@ -21,7 +29,17 @@ public class PlayerMovement : MonoBehaviour
 	Transform socketForkPosition;
 	Transform socketForkTop;
 	Transform socketForkBottom;
-	
+
+	//////////////// 
+	// STATUS
+	////////////////
+
+	int Health = 100;
+
+	//////////////// 
+	// METHODS
+	////////////////
+	/// 
 	void Awake () 
 	{
 		playerRigidBody = GetComponent<Rigidbody2D> ();
@@ -75,8 +93,6 @@ public class PlayerMovement : MonoBehaviour
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
-		//print (playerRigidBody.velocity.x);
-
 		//move fork
 		forkTransform.Translate(forkMovement);
 		// move player
@@ -86,5 +102,42 @@ public class PlayerMovement : MonoBehaviour
 	bool CanChangeDirection( bool desiredDirectionRight )
 	{
 		return Mathf.Abs(playerRigidBody.velocity.x) < changeDirectionTreshold || bWasLastDirectionRight == desiredDirectionRight;
+	}
+	
+	bool IsAlive()
+	{
+		return Health > 0;
+	}
+
+	void TakeDamage(int damage, GameTypes.DamageType dmgType, GameObject instigator)
+	{
+		Debug.Log ("Damage: " + damage + " type: " +dmgType + " from: " +instigator);
+
+		if (IsAlive ()) 
+		{
+			Health -= damage;
+		}
+
+		if( Health <= 0)
+		{
+			Died();
+		}
+	}
+
+	/// <summary>
+	/// If called, player forklift died
+	/// </summary>
+	void Died()
+	{
+		OnDeath ();
+		Destroy (gameObject);
+	}
+
+	/// <summary>
+	/// Function clears stuff just right before Owner destroy
+	/// </summary>
+	void OnDeath()
+	{
+		print ("Im dying!" + gameObject.name);
 	}
 }
