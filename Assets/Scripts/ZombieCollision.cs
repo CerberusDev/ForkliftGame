@@ -40,6 +40,12 @@ public class ZombieCollision : MonoBehaviour {
 		}
 	}
 
+	public void OnHeadTopCollision(Collision2D coll) {
+		if (bAlive && coll.collider.gameObject.tag == "Fork") {
+			KillZombie(BodyZone.HEAD, 0.0f);
+		}
+	}
+
 	public void OnHeadCollisionOff(Collision2D coll) {
 		if (bAttack) {
 			bAttack = false;
@@ -83,7 +89,7 @@ public class ZombieCollision : MonoBehaviour {
 	}
 
 	bool IsAMortalWound(float hitStrength = 0.0f) {
-		return (hitStrength > 1.2f);	
+		return (hitStrength > 1.0f);	
 	}
 
 	void KillZombie(BodyZone woundZone, float hitStrength = 0.0f) {
@@ -91,6 +97,7 @@ public class ZombieCollision : MonoBehaviour {
 
 		gameObject.layer = deadEnemyLayer;
 		myTransform.FindChild ("ZombieLegs").gameObject.layer = deadEnemyLayer;
+		myTransform.FindChild ("ZombieHeadTop").gameObject.layer = deadEnemyLayer;
 		myTransform.FindChild ("ZombieHead").gameObject.layer = deadEnemyLayer;
 		myTransform.FindChild ("ZombieNeck").gameObject.layer = deadEnemyLayer;
 		myTransform.FindChild ("ZombieTorso").gameObject.layer = deadEnemyLayer;
