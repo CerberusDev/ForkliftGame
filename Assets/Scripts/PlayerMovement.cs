@@ -1,62 +1,90 @@
 ﻿// Forklift Game
 //
-// Script author: Maciej Pryc
+// Script author: Maciej Pryc, Alan Kwiatkowski
 // Created: 2014/12/20
 
 using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
-
-	public float playerSpeed = 1000.0f;
-	public float forkSpeed = 1.0f;
-
+public class PlayerMovement : MonoBehaviour 
+{
 	Rigidbody2D playerRigidBody;
-	Transform forkTransform;
-	Vector2 inputForce;
+
+	public float movementSpeed = 4300;
+	Vector2 movementForce;
+	bool bWasLastDirectionRight;
+	public float changeDirectionTreshold = 2.0f;
+
+	public float forkSpeed = 2.0f;
 	Vector2 forkMovement;
+	Transform forkTransform;
 	Transform socketForkPosition;
 	Transform socketForkTop;
 	Transform socketForkBottom;
 	
-	void Awake () {
+	void Awake () 
+	{
 		playerRigidBody = GetComponent<Rigidbody2D> ();
 		forkTransform = transform.FindChild ("ForkliftFork");
 		socketForkPosition = forkTransform.FindChild("SocketForkPosition");
 		socketForkTop = transform.FindChild ("SocketForkTop");
 		socketForkBottom = transform.FindChild ("SocketForkBottom");
 
-		inputForce = new Vector2 (0.0f, 0.0f);
 		forkMovement = new Vector2 (0.0f, 0.0f);
+		movementForce = new Vector2 (0.0f, 0.0f);
+
+		// make mass center low
+		playerRigidBody.centerOfMass.Set(playerRigidBody.centerOfMass.x, 0);
+		playerRigidBody.drag = 5;
+		playerRigidBody.fixedAngle = true;
 	}
 
-	void FixedUpdate () {
-		inputForce.x = 0.0f;
-		inputForce.y = 0.0f;
-
+	void FixedUpdate () 
+	{
 		forkMovement.x = 0.0f;
 		forkMovement.y = 0.0f;
+		movementForce.x = 0.0f;
 
 		float currForkHeight = socketForkPosition.position.y;
 
 		if (Input.GetKey(KeyCode.RightArrow)) 
 		{
-			inputForce.x = playerSpeed;
+			if(CanChangeDirection(true))
+			{
+				movementForce.x = movementSpeed;
+				bWasLastDirectionRight = true;
+			}
 		}
+
 		if (Input.GetKey (KeyCode.LeftArrow)) 
 		{
-			inputForce.x -= playerSpeed;
+			if(CanChangeDirection(false))
+			{
+				movementForce.x = -movementSpeed;
+				bWasLastDirectionRight = false;
+			}
 		}
+
 		if (Input.GetKey(KeyCode.UpArrow) && currForkHeight < socketForkTop.position.y) 
 		{
 			forkMovement.y = forkSpeed * Time.deltaTime;
 		}
+
 		if (Input.GetKey (KeyCode.DownArrow) && currForkHeight > socketForkBottom.position.y) 
 		{
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
+		print (playerRigidBody.velocity.x);
+
+		//move fork
 		forkTransform.Translate(forkMovement);
-		playerRigidBody.AddForce (inputForce);
+		// move player
+		playerRigidBody.AddForce(movementForce);
+	}
+
+	bool CanChangeDirection( bool desiredDirectionRight )
+	{
+		return Mathf.Abs(playerRigidBody.velocity.x) < changeDirectionTreshold || bWasLastDirectionRight == desiredDirectionRight;
 	}
 }
