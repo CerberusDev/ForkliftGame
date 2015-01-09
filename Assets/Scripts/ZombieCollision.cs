@@ -31,8 +31,9 @@ public class ZombieCollision : MonoBehaviour {
 	}
 
 	public void OnHeadCollision(Collision2D coll) {
-		if (bAlive && coll.collider.gameObject.tag == "Fork") {
-			KillZombie(BodyZone.HEAD);
+		float hitStrength = coll.relativeVelocity.magnitude;
+		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) {
+			KillZombie(BodyZone.HEAD, hitStrength);
 		} else if (coll.collider.gameObject.tag == "Player") {
 			bAttack = true;
 			anim.SetBool("Attack", true);
@@ -47,16 +48,18 @@ public class ZombieCollision : MonoBehaviour {
 	}
 
 	public void OnNeckCollision(Collision2D coll) {
-		if (bAlive && coll.collider.gameObject.tag == "Fork") {
-			KillZombie(BodyZone.NECK, coll.relativeVelocity.magnitude);
+		float hitStrength = coll.relativeVelocity.magnitude;
+		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) {
+			KillZombie(BodyZone.NECK, hitStrength);
 		}
 	}
 
 	public void OnTorsoCollision(Collision2D coll) {
-		if (bAlive && coll.collider.gameObject.tag == "Fork") {
+		float hitStrength = coll.relativeVelocity.magnitude;
+		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) {
 			fork = coll.collider.gameObject;
 
-			KillZombie (BodyZone.TORSO);
+			KillZombie (BodyZone.TORSO, hitStrength);
 			Destroy (rigidbody2D);
 			myTransform.Translate(new Vector2(0.0f, 0.02f));
 			Invoke ("AttachToFork", 0.1f);
@@ -79,7 +82,11 @@ public class ZombieCollision : MonoBehaviour {
 		myTransform.parent = null;
 	}
 
-	void KillZombie(BodyZone deadWoundZone, float headThrowPower = 0.0f) {
+	bool IsAMortalWound(float hitStrength = 0.0f) {
+		return (hitStrength > 1.2f);	
+	}
+
+	void KillZombie(BodyZone woundZone, float hitStrength = 0.0f) {
 		int deadEnemyLayer = LayerMask.NameToLayer("DeadEnemy");
 
 		gameObject.layer = deadEnemyLayer;
@@ -91,7 +98,7 @@ public class ZombieCollision : MonoBehaviour {
 		bAlive = false;
 		zombieMovementScript.EnableMovement (false);
 
-		switch (deadWoundZone) {
+		switch (woundZone) {
 		case BodyZone.HEAD:
 			anim.SetTrigger ("Death");
 
@@ -106,7 +113,7 @@ public class ZombieCollision : MonoBehaviour {
 			                                          socketHeadSpawnPoint.rotation);
 			
 			Rigidbody2D headRigidbody2D = head.GetComponent<Rigidbody2D>();
-			headRigidbody2D.AddForce(new Vector2(25.0f * headThrowPower, 50.0f * headThrowPower));
+			headRigidbody2D.AddForce(new Vector2(25.0f * hitStrength, 50.0f * hitStrength));
 			headRigidbody2D.AddTorque(Random.Range(-5.0f, 20.0f));
 
 			Destroy (gameObject, destroyDelay);
