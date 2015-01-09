@@ -21,6 +21,7 @@ public class ZombieCollision : MonoBehaviour {
 	float destroyDelay = 10.0f;
 	bool bAttack = false;
 	bool bPierced = false;
+	bool bAlive = true;
 
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -30,7 +31,7 @@ public class ZombieCollision : MonoBehaviour {
 	}
 
 	public void OnHeadCollision(Collision2D coll) {
-		if (coll.collider.gameObject.tag == "Fork") {
+		if (bAlive && coll.collider.gameObject.tag == "Fork") {
 			KillZombie(BodyZone.HEAD);
 		} else if (coll.collider.gameObject.tag == "Player") {
 			bAttack = true;
@@ -46,13 +47,13 @@ public class ZombieCollision : MonoBehaviour {
 	}
 
 	public void OnNeckCollision(Collision2D coll) {
-		if (coll.collider.gameObject.tag == "Fork") {
+		if (bAlive && coll.collider.gameObject.tag == "Fork") {
 			KillZombie(BodyZone.NECK, coll.relativeVelocity.magnitude);
 		}
 	}
 
 	public void OnTorsoCollision(Collision2D coll) {
-		if (coll.collider.gameObject.tag == "Fork") {
+		if (bAlive && coll.collider.gameObject.tag == "Fork") {
 			fork = coll.collider.gameObject;
 
 			KillZombie (BodyZone.TORSO);
@@ -87,6 +88,7 @@ public class ZombieCollision : MonoBehaviour {
 		myTransform.FindChild ("ZombieNeck").gameObject.layer = deadEnemyLayer;
 		myTransform.FindChild ("ZombieTorso").gameObject.layer = deadEnemyLayer;
 
+		bAlive = false;
 		zombieMovementScript.EnableMovement (false);
 
 		switch (deadWoundZone) {
