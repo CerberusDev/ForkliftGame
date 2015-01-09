@@ -6,45 +6,26 @@
 using UnityEngine;
 using System.Collections;
 
-public class CanAttack : MonoBehaviour {
-
-	private HasLife victimLife;
-
-	public struct damageInfo
+public class CanAttack : MonoBehaviour 
+{
+	[System.Serializable]
+	public class damageInfo
 	{
 		public GameTypes.DamageType type;
 		public int damage;
 	}
+	public damageInfo[] attacks;
 
-	private damageInfo[] attacks;
+	void Start(){}
+	public void Init(){}
+	void Update() {}
 
-	// Use this for initialization
-	void Start () 
+	public void GiveDamageTo(GameTypes.AttackModes attaackMode, GameObject victim)
 	{
-		attacks = new damageInfo[2];
-
-		attacks [0].type = GameTypes.DamageType.Player_Fork;
-		attacks [0].damage = 100;
-	}
-
-	public void Init()
-	{
-		Start ();
-	}
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	public void GiveDamageTo(int attaackMode, GameObject victim)
-	{
-		if (attaackMode >= 0)
+		if ((int)attaackMode >= 0)
 		{
-			//victimLife = victim.GetComponent("HasLife");
-
-
-			//victimLife.TakeDamage(attacks[attaackMode].damage, attacks[attaackMode].type, gameObject);
+			// cos tu nie tak z tym. zerkne jak wroce
+			victim.GetComponent<HasLife>().TakeDamage( attacks[(int)attaackMode].damage, attacks[(int)attaackMode].type, gameObject);
 		}
 	}
 }

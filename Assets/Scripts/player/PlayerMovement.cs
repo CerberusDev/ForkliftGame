@@ -9,8 +9,8 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour 
 {
 	Rigidbody2D playerRigidBody;
-	HasLife life;
-	CanAttack offensive;
+	HasLife Life;
+	CanAttack Weapon;
 
 	//////////////// 
 	// MOVEMENT PLAYER
@@ -52,8 +52,8 @@ public class PlayerMovement : MonoBehaviour
 		playerRigidBody.drag = 5;
 		playerRigidBody.fixedAngle = true;
 
-		life = GetComponent<HasLife> ();
-		offensive = GetComponent<CanAttack> ();
+		Life = GetComponent<HasLife> ();
+		Weapon = GetComponent<CanAttack> ();
 	}
 
 	void FixedUpdate () 
@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
-		print (life.Health);
+		print (Life.Health);
 		//move fork
 		forkTransform.Translate(forkMovement);
 		// move player

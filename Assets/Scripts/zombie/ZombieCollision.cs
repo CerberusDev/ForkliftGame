@@ -6,7 +6,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class ZombieCollision : MonoBehaviour {
+public class ZombieCollision : MonoBehaviour 
+{
 
 	public GameObject zombieHeadPrefab;
 
@@ -17,57 +18,77 @@ public class ZombieCollision : MonoBehaviour {
 	Transform socketHeadSpawnPoint;
 	Transform myTransform;
 	GameObject fork;
+	GameObject forklift;
 
 	float destroyDelay = 10.0f;
 	bool bAttack = false;
 	bool bPierced = false;
 	bool bAlive = true;
 
-	CanAttack offensive;
+	CanAttack Weapon;
 
-	void Start () {
+	void Start () 
+	{
 		anim = GetComponent<Animator> ();
 		zombieMovementScript = GetComponent<ZombieMovement> ();
 		socketHeadSpawnPoint = transform.FindChild ("SocketHeadSpawnPoint");
 		myTransform = transform;
 
-		offensive = GetComponent<CanAttack> ();
+		Weapon = GetComponent<CanAttack>();
 	}
 
-	public void OnHeadCollision(Collision2D coll) {
+	private void NotifyAttack()
+	{
+		Weapon.GiveDamageTo(GameTypes.AttackModes.Primary,forklift);
+	}
+
+	public void OnHeadCollision(Collision2D coll) 
+	{
 		float hitStrength = coll.relativeVelocity.magnitude;
-		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) {
+
+		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
+		{
 			KillZombie(BodyZone.HEAD, hitStrength);
-		} else if (coll.collider.gameObject.tag == "Player") {
+		} 
+		else if (coll.collider.gameObject.tag == "Player") 
+		{
 			bAttack = true;
 			anim.SetBool("Attack", true);
-			offensive.GiveDamageTo(0,coll.collider.gameObject);
+			forklift = coll.gameObject;
 		}
 	}
 
-	public void OnHeadTopCollision(Collision2D coll) {
-		if (bAlive && coll.collider.gameObject.tag == "Fork") {
+	public void OnHeadCollisionOff(Collision2D coll) 
+	{
+		if (bAttack) {
+			bAttack = false;
+			anim.SetBool("Attack", false);
+			forklift = null;
+		}
+	}
+
+	public void OnHeadTopCollision(Collision2D coll) 
+	{
+		if (bAlive && coll.collider.gameObject.tag == "Fork") 
+		{
 			KillZombie(BodyZone.HEAD, 0.0f);
 		}
 	}
 
-	public void OnHeadCollisionOff(Collision2D coll) {
-		if (bAttack) {
-			bAttack = false;
-			anim.SetBool("Attack", false);
-		}
-	}
-
-	public void OnNeckCollision(Collision2D coll) {
+	public void OnNeckCollision(Collision2D coll) 
+	{
 		float hitStrength = coll.relativeVelocity.magnitude;
-		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) {
+		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
+		{
 			KillZombie(BodyZone.NECK, hitStrength);
 		}
 	}
 
-	public void OnTorsoCollision(Collision2D coll) {
+	public void OnTorsoCollision(Collision2D coll) 
+	{
 		float hitStrength = coll.relativeVelocity.magnitude;
-		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) {
+		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
+		{
 			fork = coll.collider.gameObject;
 
 			KillZombie (BodyZone.TORSO, hitStrength);
@@ -77,27 +98,33 @@ public class ZombieCollision : MonoBehaviour {
 		}
 	}
 
-	public void OnLegsCollision(Collision2D coll) {
-		if (bPierced) {
+	public void OnLegsCollision(Collision2D coll) 
+	{
+		if (bPierced) 
+		{
 			anim.SetTrigger ("PiercedAndSmashed");
 			Destroy (gameObject, destroyDelay);
 			Deattach();
 		}
 	}
 
-	void AttachToFork() {
+	void AttachToFork() 
+	{
 		myTransform.parent = fork.transform;
 	}
 
-	void Deattach() {
+	void Deattach() 
+	{
 		myTransform.parent = null;
 	}
 
-	bool IsAMortalWound(float hitStrength) {
+	bool IsAMortalWound(float hitStrength) 
+	{
 		return (hitStrength > 1.0f);	
 	}
 
-	void KillZombie(BodyZone woundZone, float hitStrength) {
+	void KillZombie(BodyZone woundZone, float hitStrength) 
+	{
 		int deadEnemyLayer = LayerMask.NameToLayer("DeadEnemy");
 
 		gameObject.layer = deadEnemyLayer;
@@ -110,7 +137,8 @@ public class ZombieCollision : MonoBehaviour {
 		bAlive = false;
 		zombieMovementScript.EnableMovement (false);
 
-		switch (woundZone) {
+		switch (woundZone) 
+		{
 		case BodyZone.HEAD:
 			anim.SetTrigger ("Death");
 

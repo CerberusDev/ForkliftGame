@@ -41,6 +41,8 @@ public class HasLife : MonoBehaviour
 	/// </summary>
 	void Died()
 	{
-		Destroy (gameObject);
+		//temp
+		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+		//Destroy (gameObject);
 	}
 }
