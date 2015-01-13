@@ -8,7 +8,6 @@ using System.Collections;
 
 public class ZombieCollision : HasLife
 {
-
 	public GameObject zombieHeadPrefab;
 
 	enum BodyZone {HEAD, NECK, TORSO};
@@ -17,9 +16,11 @@ public class ZombieCollision : HasLife
 	ZombieMovement zombieMovementScript;
 	Transform socketHeadSpawnPoint;
 	Transform myTransform;
+	Rigidbody2D	myRigidbody2D;
 	GameObject fork;
 	GameObject forklift;
 
+	Vector2 jumpImpulse = new Vector2 (0.0f, 1500.0f);
 	float destroyDelay = 10.0f;
 	bool bAttack = false;
 	bool bPierced = false;
@@ -33,6 +34,7 @@ public class ZombieCollision : HasLife
 		zombieMovementScript = GetComponent<ZombieMovement> ();
 		socketHeadSpawnPoint = transform.FindChild ("SocketHeadSpawnPoint");
 		myTransform = transform;
+		myRigidbody2D = rigidbody2D;
 
 		Weapon = GetComponent<CanAttack>();
 	}
@@ -106,6 +108,17 @@ public class ZombieCollision : HasLife
 			Destroy (gameObject, destroyDelay);
 			Deattach();
 		}
+	}
+
+	public void OnLegsTriggerEnter(Collider2D other)
+	{
+		Jump ();
+	}
+
+	void Jump() 
+	{
+		myTransform.Translate(new Vector3(0.0f, 0.1f, 0.0f));
+		myRigidbody2D.AddForce (jumpImpulse);
 	}
 
 	void AttachToFork() 
