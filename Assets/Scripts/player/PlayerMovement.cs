@@ -90,6 +90,7 @@ public class PlayerMovement : HasLife
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
+
 		//move fork
 		forkTransform.Translate(forkMovement);
 		// move player
@@ -104,5 +105,6 @@ public class PlayerMovement : HasLife
 	public override void Died()
 	{
 		Debug.Log ("I, forklift... just died");
+		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 	}
 }
