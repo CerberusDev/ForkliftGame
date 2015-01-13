@@ -24,8 +24,7 @@ public class CanAttack : MonoBehaviour
 	{
 		if ((int)attaackMode >= 0)
 		{
-			// cos tu nie tak z tym. zerkne jak wroce
-			victim.GetComponent<HasLife>().TakeDamage( attacks[(int)attaackMode].damage, attacks[(int)attaackMode].type, gameObject);
+			victim.GetComponent<LifeManager>().TakeDamage( attacks[(int)attaackMode].damage, attacks[(int)attaackMode].type, gameObject);
 		}
 	}
 }

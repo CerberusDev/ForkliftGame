@@ -24,7 +24,7 @@ public class SmoothAttach : MonoBehaviour {
 		myTransform.Translate (-offset);
 		Vector3 diff = baseTransform.position - myTransform.position;
 
-		diff /= 8.0f;
+		diff /=20.0f;
 
 		myTransform.position = myTransform.position + diff;
 		myTransform.Translate (offset);

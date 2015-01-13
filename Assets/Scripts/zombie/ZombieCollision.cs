@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ZombieCollision : MonoBehaviour 
+public class ZombieCollision : HasLife
 {
 
 	public GameObject zombieHeadPrefab;
@@ -165,5 +165,10 @@ public class ZombieCollision : MonoBehaviour
 			bPierced = true;
 			break;
 		}
+	}
+
+	public override void Died()
+	{
+		Debug.Log ("i died");
 	}
 }

@@ -6,8 +6,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class HasLife : MonoBehaviour 
+public class LifeManager : MonoBehaviour 
 {
+	HasLife life;
 	public int Health;
 
 	// Use this for initialization
@@ -32,17 +33,20 @@ public class HasLife : MonoBehaviour
 		
 		if( Health <= 0)
 		{
-			Died();
+			//Debug.Log(gameObject);
+			//Debug.Log(instigator);
+			life = gameObject.GetComponent<HasLife>();
+			life.Died();
 		}
 	}
 	
 	/// <summary>
 	/// If called, player forklift died
 	/// </summary>
-	void Died()
+	/*void Died()
 	{
 		//temp
 		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 		//Destroy (gameObject);
-	}
+	}*/
 }

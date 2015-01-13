@@ -6,10 +6,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour 
+public class PlayerMovement : HasLife
 {
 	Rigidbody2D playerRigidBody;
-	HasLife Life;
 	CanAttack Weapon;
 
 	//////////////// 
@@ -52,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
 		playerRigidBody.drag = 5;
 		playerRigidBody.fixedAngle = true;
 
-		Life = GetComponent<HasLife> ();
 		Weapon = GetComponent<CanAttack> ();
 	}
 
@@ -92,7 +90,6 @@ public class PlayerMovement : MonoBehaviour
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
-		print (Life.Health);
 		//move fork
 		forkTransform.Translate(forkMovement);
 		// move player
@@ -102,5 +99,10 @@ public class PlayerMovement : MonoBehaviour
 	bool CanChangeDirection( bool desiredDirectionRight )
 	{
 		return Mathf.Abs(playerRigidBody.velocity.x) < changeDirectionTreshold || bWasLastDirectionRight == desiredDirectionRight;
+	}
+
+	public override void Died()
+	{
+		Debug.Log ("I, forklift... just died");
 	}
 }
