@@ -17,14 +17,14 @@ public class SmoothAttach : MonoBehaviour {
 	void Start() {
 		myTransform = transform;
 		baseTransform = attachBase.transform;
-		offset = new Vector3 (4.0f, 0.0f, -10.0f);
+		offset = new Vector3 (3.5f, 0.0f, -10.0f);
 	}
 
 	void Update () {
 		myTransform.Translate (-offset);
 		Vector3 diff = baseTransform.position - myTransform.position;
 
-		diff /=20.0f;
+		diff /= 12.0f;
 
 		myTransform.position = myTransform.position + diff;
 		myTransform.Translate (offset);
