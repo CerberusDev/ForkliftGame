@@ -10,25 +10,16 @@ public class ZombieMovement : MonoBehaviour {
 	
 	public float speed = 1.0f;
 	
-	Transform zombieTransform;
-	Vector2 speedVector;
+	Rigidbody2D myRigidbody2D;
 	bool bShouldMove = true;
-	//Vector2 gravityVector;
 	
 	void Awake () {
-		zombieTransform = GetComponent<Transform> ();
-		speedVector = new Vector2 (-speed, 0.0f);
-		//gravityVector = new Vector2 (0.0f, -1.0f);
+		myRigidbody2D = GetComponent<Rigidbody2D> ();
 	}
 	
 	void FixedUpdate () {
-		//zombieRigidBody.MovePosition (zombieRigidBody.position + speedVector * Time.deltaTime);
-		//zombieRigidBody.AddForce (gravityVector * zombieRigidBody.gravityScale);
-		//zombieRigidBody.AddForce (speedVector);
-		//zombieRigidBody.position += speedVector * Time.deltaTime;
-		//zombieRigidBody.MovePosition (zombieRigidBody.position + (speedVector + gravityVector) * Time.deltaTime);
-		if (bShouldMove)
-			zombieTransform.Translate (speedVector * Time.deltaTime);
+		if (bShouldMove && myRigidbody2D.velocity.x <= 0.0f && myRigidbody2D.velocity.x > -speed)
+			myRigidbody2D.velocity = new Vector2(-speed, myRigidbody2D.velocity.y);
 	}
 
 	public void EnableMovement(bool newMovementState) {
