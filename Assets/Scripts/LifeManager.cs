@@ -11,14 +11,21 @@ public class LifeManager : MonoBehaviour
 	HasLife life;
 	public int Health;
 
+	// hud object
+	public GameObject HUDObject;
+	// stat script in hud object
+	private HUDStats HUD;
+
+	public bool UseFullscreenDamageEffect;
+
 	// Use this for initialization
 	void Start (){}
-	
+
 	// Update is called once per frame
 	void Update (){}
 	
 	public bool IsAlive()
-	{
+	{	
 		return Health > 0;
 	}
 
@@ -45,6 +52,30 @@ public class LifeManager : MonoBehaviour
 			//special case end
 
 			damage = life.ReduceDamage( damage, momentum );
+
+			// Notify HUD about damage
+			if( gameObject.tag == "Player" && damage > 0)
+			{
+				//init for first time. function Start and Awake did it to early. dunno why
+				if( HUD == null )
+				{
+					HUD = HUDObject.GetComponent<HUDStats> ();
+				}
+
+				HUD.playerDamaged(damage);
+
+				if( UseFullscreenDamageEffect )
+				{
+					HUD.PlayDamageEffect();
+				}
+				else
+				{
+					///gameObject.
+					//HUD.damage
+				}
+
+			}
+
 			Health -= damage;
 		}
 
