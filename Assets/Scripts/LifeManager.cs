@@ -21,32 +21,38 @@ public class LifeManager : MonoBehaviour
 	{
 		return Health > 0;
 	}
-	
-	public void TakeDamage(int damage, GameTypes.DamageType dmgType, GameObject instigator)
+
+	/// <summary>
+	/// Handles given damage
+	/// </summary>
+	/// <param name="damage">Amount of damage</param>
+	/// <param name="dmgType">Type of damage</param>
+	/// <param name="instigator">Who was responsible for this madness</param>
+	/// <param name="damagedPart">Which part was damaged</param>
+	/// <param name="momentum">Relative velocity between colliders</param>
+	public void TakeDamage(int damage, GameTypes.DamageType dmgType, GameObject instigator, Collider2D damagedPart, float momentum )
 	{
-		Debug.Log ("Damage: " + damage + " type: " +dmgType + " from: " +instigator);
-		
-		if (IsAlive ()) 
+		life = gameObject.GetComponent<HasLife>();
+
+		if (IsAlive()) 
 		{
+			//special case
+			if (damagedPart.name == "ZombieHeadTop")
+				momentum += 2.0f;
+
+			if( damagedPart.name == "ZombieLegs")
+				damage = 0;
+			//special case end
+
+			damage = life.ReduceDamage( damage, momentum );
 			Health -= damage;
 		}
+
+		Debug.Log ("Dmg: " + damage + " type: " + dmgType + " from: " + instigator + "Part: " + damagedPart.name + "Moment: " + momentum );
 		
-		if( Health <= 0)
+		if( !IsAlive() ) 
 		{
-			//Debug.Log(gameObject);
-			//Debug.Log(instigator);
-			life = gameObject.GetComponent<HasLife>();
-			life.Died();
+			life.Died( damagedPart );
 		}
 	}
-	
-	/// <summary>
-	/// If called, player forklift died
-	/// </summary>
-	/*void Died()
-	{
-		//temp
-		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
-		//Destroy (gameObject);
-	}*/
 }

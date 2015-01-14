@@ -20,11 +20,18 @@ public class CanAttack : MonoBehaviour
 	public void Init(){}
 	void Update() {}
 
-	public void GiveDamageTo(GameTypes.AttackModes attaackMode, GameObject victim)
+	/// <summary>
+	/// Handles giving damage to some gameObject.
+	/// </summary>
+	/// <param name="victim">Who will pain.</param>
+	/// <param name="attaackMode">Attack mode</param>
+	/// <param name="damagedPart">Which part of victim was damaged</param>
+	/// <param name="momentum"> Relative velocity between colliders </param>
+	public void GiveDamageTo(GameObject victim, GameTypes.AttackModes attaackMode, Collider2D damagedPart, float momentum )
 	{
 		if ((int)attaackMode >= 0)
 		{
-			victim.GetComponent<LifeManager>().TakeDamage( attacks[(int)attaackMode].damage, attacks[(int)attaackMode].type, gameObject);
+			victim.GetComponent<LifeManager>().TakeDamage( attacks[(int)attaackMode].damage, attacks[(int)attaackMode].type, gameObject, damagedPart, momentum );
 		}
 	}
 }

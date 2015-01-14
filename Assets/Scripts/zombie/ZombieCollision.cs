@@ -24,9 +24,10 @@ public class ZombieCollision : HasLife
 	float destroyDelay = 10.0f;
 	bool bAttack = false;
 	bool bPierced = false;
-	bool bAlive = true;
 
 	CanAttack Weapon;
+
+	float lastDamageMomentum;
 
 	void Start () 
 	{
@@ -41,18 +42,19 @@ public class ZombieCollision : HasLife
 
 	private void NotifyAttack()
 	{
-		Weapon.GiveDamageTo(GameTypes.AttackModes.Primary,forklift);
+		Weapon.GiveDamageTo(forklift, GameTypes.AttackModes.Primary, forklift.collider2D, 1.0f);
 	}
 
 	public void OnHeadCollision(Collision2D coll) 
 	{
-		float hitStrength = coll.relativeVelocity.magnitude;
+		//float hitStrength = coll.relativeVelocity.magnitude;
 
-		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
-		{
-			KillZombie(BodyZone.HEAD, hitStrength);
-		} 
-		else if (coll.collider.gameObject.tag == "Player") 
+		//if (Life.IsAlive() && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
+		//{
+			//KillZombie(BodyZone.HEAD, hitStrength);
+		//} 
+		//else
+		if (coll.collider.gameObject.tag == "Player") 
 		{
 			bAttack = true;
 			anim.SetBool("Attack", true);
@@ -71,33 +73,33 @@ public class ZombieCollision : HasLife
 
 	public void OnHeadTopCollision(Collision2D coll) 
 	{
-		if (bAlive && coll.collider.gameObject.tag == "Fork") 
-		{
-			KillZombie(BodyZone.HEAD, 0.0f);
-		}
+		//if (Life.IsAlive() && coll.collider.gameObject.tag == "Fork") 
+		//{
+		//	KillZombie(BodyZone.HEAD, 0.0f);
+		//}
 	}
 
 	public void OnNeckCollision(Collision2D coll) 
 	{
-		float hitStrength = coll.relativeVelocity.magnitude;
-		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
-		{
-			KillZombie(BodyZone.NECK, hitStrength);
-		}
+		//float hitStrength = coll.relativeVelocity.magnitude;
+		//if (Life.IsAlive() && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
+		//{
+		//	KillZombie(BodyZone.NECK, hitStrength);
+		//}
 	}
 
 	public void OnTorsoCollision(Collision2D coll) 
 	{
-		float hitStrength = coll.relativeVelocity.magnitude;
-		if (bAlive && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
-		{
+		//float hitStrength = coll.relativeVelocity.magnitude;
+		//if (Life.IsAlive() && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
+		//{
 			fork = coll.collider.gameObject;
 
-			KillZombie (BodyZone.TORSO, hitStrength);
-			Destroy (rigidbody2D);
-			myTransform.Translate(new Vector2(0.0f, 0.02f));
-			Invoke ("AttachToFork", Random.Range(0.1f, 0.2f));
-		}
+		//	KillZombie (BodyZone.TORSO, hitStrength);
+		//	Destroy (rigidbody2D);
+		//	myTransform.Translate(new Vector2(0.0f, 0.02f));
+		//	Invoke ("AttachToFork", Random.Range(0.1f, 0.2f));
+		//}
 	}
 
 	public void OnLegsCollision(Collision2D coll) 
@@ -133,7 +135,7 @@ public class ZombieCollision : HasLife
 
 	bool IsAMortalWound(float hitStrength) 
 	{
-		return (hitStrength > 1.0f);	
+		return (hitStrength > 2.0f);	
 	}
 
 	void KillZombie(BodyZone woundZone, float hitStrength) 
@@ -147,7 +149,7 @@ public class ZombieCollision : HasLife
 		myTransform.FindChild ("ZombieNeck").gameObject.layer = deadEnemyLayer;
 		myTransform.FindChild ("ZombieTorso").gameObject.layer = deadEnemyLayer;
 
-		bAlive = false;
+		//bAlive = false;
 		zombieMovementScript.EnableMovement (false);
 
 		switch (woundZone) 
@@ -180,8 +182,49 @@ public class ZombieCollision : HasLife
 		}
 	}
 
-	public override void Died()
+	/// <summary>
+	/// Handles all reducing damage mechanic
+	/// </summary>
+	/// <returns>The damage.</returns>
+	/// <param name="originalDamage">Original damage.</param>
+	/// <param name="momentum">Momentum.</param>
+	public override int ReduceDamage( int originalDamage, float momentum )
 	{
-		Debug.Log ("i died");
+		// saved for Death // soft hax :D
+		lastDamageMomentum = momentum;
+
+		// check for deadly wound
+		return IsAMortalWound(momentum) ? originalDamage : originalDamage / 10 ;
+	}
+
+	/// <summary>
+	/// If called, someone just died
+	/// </summary>
+	/// <param name="finalPunchPart">Where was final punch applied</param>
+	public override void Died( Collider2D finalPunchPart )
+	{
+		Debug.Log (gameObject.name +  ": i died. part: " + finalPunchPart);
+	
+		switch (finalPunchPart.name) 
+		{
+		case "ZombieHeadTop":
+			KillZombie(BodyZone.HEAD, lastDamageMomentum);
+			break;
+		case "ZombieHead":
+			KillZombie(BodyZone.HEAD, 0.0f);
+			break;
+		case "ZombieNeck":
+			KillZombie(BodyZone.NECK, lastDamageMomentum);
+			break;
+		case "ZombieTorso":
+			KillZombie (BodyZone.TORSO, lastDamageMomentum);
+			Destroy (rigidbody2D);
+			myTransform.Translate(new Vector2(0.0f, 0.02f));
+			Invoke ("AttachToFork", Random.Range(0.1f, 0.2f));
+			break;
+		case "ZombieLegs":
+			//
+			break;
+		}
 	}
 }

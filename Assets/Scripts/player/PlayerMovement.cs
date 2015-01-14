@@ -102,7 +102,19 @@ public class PlayerMovement : HasLife
 		return Mathf.Abs(playerRigidBody.velocity.x) < changeDirectionTreshold || bWasLastDirectionRight == desiredDirectionRight;
 	}
 
-	public override void Died()
+	public void OnForkCollision(Collision2D coll) 
+	{
+		// is Zombie
+		if( coll.collider.gameObject.tag == "ZombieMelee" || coll.gameObject.tag == "ZombieMelee")
+		{
+			Weapon.GiveDamageTo(coll.gameObject, GameTypes.AttackModes.Primary, coll.collider, coll.relativeVelocity.magnitude );
+		}
+	}
+
+	/// <summary>
+	/// If called, someone just died
+	/// </summary>
+	public override void Died( Collider2D finalPunchPart )
 	{
 		Debug.Log ("I, forklift... just died");
 		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
