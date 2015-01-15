@@ -9,6 +9,7 @@ using System.Collections;
 public class ZombieCollision : HasLife
 {
 	public GameObject zombieHeadPrefab;
+	public PhysicsMaterial2D deadZombiePhysicalMaterial;
 
 	enum BodyZone {HEAD, NECK, TORSO};
 
@@ -151,6 +152,8 @@ public class ZombieCollision : HasLife
 
 		//bAlive = false;
 		zombieMovementScript.EnableMovement (false);
+
+		myTransform.FindChild ("ZombieLegs").GetComponent<CircleCollider2D> ().sharedMaterial = deadZombiePhysicalMaterial;
 
 		switch (woundZone) 
 		{
