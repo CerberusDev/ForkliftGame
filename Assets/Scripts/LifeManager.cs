@@ -62,18 +62,20 @@ public class LifeManager : MonoBehaviour
 					HUD = HUDObject.GetComponent<HUDStats> ();
 				}
 
-				HUD.playerDamaged(damage);
-
-				if( UseFullscreenDamageEffect )
+				if( HUD != null )
 				{
-					HUD.PlayDamageEffect();
-				}
-				else
-				{
-					///gameObject.
-					//HUD.damage
-				}
+					HUD.playerDamaged(damage);
 
+					if( UseFullscreenDamageEffect )
+					{
+						HUD.PlayDamageEffect();
+					}
+					else
+					{
+						// TODO: jebnac ekeft obrazen na wozku
+						//HUD.damage
+					}
+				}
 			}
 
 			Health -= damage;

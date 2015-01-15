@@ -11,6 +11,11 @@ public class PlayerMovement : HasLife
 	Rigidbody2D playerRigidBody;
 	CanAttack Weapon;
 
+	// hud object
+	public GameObject HUDObject;
+	// stat script in hud object
+	private HUDStats HUD;
+
 	//////////////// 
 	// MOVEMENT PLAYER
 	////////////////
@@ -20,6 +25,7 @@ public class PlayerMovement : HasLife
 	bool bWasLastDirectionRight;
 	public float changeDirectionTreshold = 2.0f;
 
+	public GameObject LevelStart, LevelEnd;
 	//////////////// 
 	// MOVEMENT FORK
 	////////////////
@@ -90,7 +96,6 @@ public class PlayerMovement : HasLife
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
-
 		//move fork
 		forkTransform.Translate(forkMovement);
 		// move player
@@ -118,5 +123,21 @@ public class PlayerMovement : HasLife
 	{
 		Debug.Log ("I, forklift... just died");
 		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+	}
+
+	void Update()
+	{
+		//init for first time. function Start and Awake did it to early. dunno why
+		if( HUD == null )
+		{
+			HUD = HUDObject.GetComponent<HUDStats> ();
+		}
+
+		// update level progress (player position between LevelStart and LevelEnd)
+		if( HUD != null)
+		{
+			// what percent is player position between LevelStart and LevelEnd
+			HUD.SetLevelProgress((transform.position.x - LevelStart.transform.position.x) / (LevelEnd.transform.position.x - LevelStart.transform.position.x));
+		}
 	}
 }
