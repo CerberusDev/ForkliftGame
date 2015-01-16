@@ -16,6 +16,8 @@ public class PlayerMovement : HasLife
 	// stat script in hud object
 	private HUDStats HUD;
 
+	private ToolBucketManager Bucket;
+
 	//////////////// 
 	// MOVEMENT PLAYER
 	////////////////
@@ -58,6 +60,7 @@ public class PlayerMovement : HasLife
 		playerRigidBody.fixedAngle = true;
 
 		Weapon = GetComponent<CanAttack> ();
+		Bucket = GetComponent<ToolBucketManager>();
 	}
 
 	void FixedUpdate () 
@@ -67,6 +70,10 @@ public class PlayerMovement : HasLife
 		movementForce.x = 0.0f;
 
 		float currForkHeight = socketForkPosition.position.y;
+
+		///////////////////////
+		////     INPUT     ////
+		///////////////////////
 
 		if (Input.GetKey(KeyCode.RightArrow)) 
 		{
@@ -96,6 +103,15 @@ public class PlayerMovement : HasLife
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
+		if (Input.GetKeyUp(KeyCode.Z)) 
+		{
+			TryToThrowTool();
+		}
+
+		//////////////////////
+		////  MAIN CALLS  ////
+		//////////////////////
+
 		//move fork
 		forkTransform.Translate(forkMovement);
 		// move player
@@ -124,20 +140,54 @@ public class PlayerMovement : HasLife
 		Debug.Log ("I, forklift... just died");
 		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 	}
-
+	
 	void Update()
 	{
 		//init for first time. function Start and Awake did it to early. dunno why
-		if( HUD == null )
+		if( HUDObject != null )
 		{
-			HUD = HUDObject.GetComponent<HUDStats> ();
+			if( HUD == null )
+			{
+				HUD = HUDObject.GetComponent<HUDStats> ();
+			}
+			
+			// update level progress (player position between LevelStart and LevelEnd)
+			if( HUD != null)
+			{
+				// what percent is player position between LevelStart and LevelEnd
+				HUD.SetLevelProgress((transform.position.x - LevelStart.transform.position.x) / (LevelEnd.transform.position.x - LevelStart.transform.position.x));
+			}
 		}
+	}
 
-		// update level progress (player position between LevelStart and LevelEnd)
-		if( HUD != null)
+	/// <summary>
+	/// Tries to throw tool.
+	/// </summary>
+	void TryToThrowTool()
+	{
+		if( Bucket != null)
 		{
-			// what percent is player position between LevelStart and LevelEnd
-			HUD.SetLevelProgress((transform.position.x - LevelStart.transform.position.x) / (LevelEnd.transform.position.x - LevelStart.transform.position.x));
+			if( Bucket.CanThrowTool())
+			{
+				//play animation
+				NotifyThrowTool();
+			}
+		}
+	}
+
+	/// <summary>
+	/// Notifies the throw tool.
+	/// </summary>
+	void NotifyThrowTool()
+	{
+		if( Bucket != null)
+		{
+			Bucket.ThrowTool();
+
+			if( HUD != null)
+			{
+				HUD.SetToolCount(Bucket.GetToolCount());
+			}
 		}
 	}
 }

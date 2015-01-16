@@ -56,5 +56,13 @@ public class HUDStats : MonoBehaviour
 	{
 		LevelProgressBar.value = inProgress;
 	}
+
+	///////////////////////
+	//// BUCKET STATUS ////
+	///////////////////////
+	public void SetToolCount( int inCount )
+	{
+		print("UI updated");
+	}
 }
 

@@ -57,23 +57,26 @@ public class LifeManager : MonoBehaviour
 			if( gameObject.tag == "Player" && damage > 0)
 			{
 				//init for first time. function Start and Awake did it to early. dunno why
-				if( HUD == null )
+				if( HUDObject != null )
 				{
-					HUD = HUDObject.GetComponent<HUDStats> ();
-				}
-
-				if( HUD != null )
-				{
-					HUD.playerDamaged(damage);
-
-					if( UseFullscreenDamageEffect )
+					if( HUD == null )
 					{
-						HUD.PlayDamageEffect();
+						HUD = HUDObject.GetComponent<HUDStats> ();
 					}
-					else
+					
+					if( HUD != null )
 					{
-						// TODO: jebnac ekeft obrazen na wozku
-						//HUD.damage
+						HUD.playerDamaged(damage);
+						
+						if( UseFullscreenDamageEffect )
+						{
+							HUD.PlayDamageEffect();
+						}
+						else
+						{
+							// TODO: jebnac ekeft obrazen na wozku
+							//HUD.damage
+						}
 					}
 				}
 			}
