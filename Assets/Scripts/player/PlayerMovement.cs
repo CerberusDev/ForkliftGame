@@ -17,6 +17,7 @@ public class PlayerMovement : HasLife
 	private HUDStats HUD;
 
 	private ToolBucketManager Bucket;
+	Animator anim;
 
 	//////////////// 
 	// MOVEMENT PLAYER
@@ -61,6 +62,7 @@ public class PlayerMovement : HasLife
 
 		Weapon = GetComponent<CanAttack> ();
 		Bucket = GetComponent<ToolBucketManager>();
+		anim = GetComponent<Animator>();
 	}
 
 	void FixedUpdate () 
@@ -169,8 +171,10 @@ public class PlayerMovement : HasLife
 		{
 			if( Bucket.CanThrowTool())
 			{
-				//play animation
-				NotifyThrowTool();
+				if( anim != null )
+				{
+					anim.SetBool("Throw", true);
+				}
 			}
 		}
 	}
@@ -188,6 +192,14 @@ public class PlayerMovement : HasLife
 			{
 				HUD.SetToolCount(Bucket.GetToolCount());
 			}
+		}
+	}
+
+	void NotifyThrowEnd()
+	{
+		if( anim != null )
+		{
+			anim.SetBool("Throw", false);
 		}
 	}
 }
