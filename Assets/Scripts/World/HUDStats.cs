@@ -15,7 +15,8 @@ public class HUDStats : MonoBehaviour
 	public Image DamageImage;
 	private float DamageImageTime;
 	public Color DamageImageColor;
-	public Text temp;
+	public Text Tools;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -62,7 +63,7 @@ public class HUDStats : MonoBehaviour
 	///////////////////////
 	public void SetToolCount( int inCount )
 	{
-		print("UI updated");
+		Tools.text = inCount.ToString();
 	}
 }
 

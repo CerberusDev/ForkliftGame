@@ -137,7 +137,7 @@ public class PlayerMovement : HasLife
 	/// <summary>
 	/// If called, someone just died
 	/// </summary>
-	public override void Died( Collider2D finalPunchPart )
+	public override void Died( Collider2D finalPunchPart, GameTypes.DamageType dmgType )
 	{
 		Debug.Log ("I, forklift... just died");
 		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
@@ -151,6 +151,8 @@ public class PlayerMovement : HasLife
 			if( HUD == null )
 			{
 				HUD = HUDObject.GetComponent<HUDStats> ();
+
+				UpdateToolCount();
 			}
 			
 			// update level progress (player position between LevelStart and LevelEnd)
@@ -180,7 +182,7 @@ public class PlayerMovement : HasLife
 	}
 
 	/// <summary>
-	/// Notifies the throw tool.
+	/// Notify from throw animation.
 	/// </summary>
 	void NotifyThrowTool()
 	{
@@ -188,18 +190,43 @@ public class PlayerMovement : HasLife
 		{
 			Bucket.ThrowTool();
 
-			if( HUD != null)
-			{
-				HUD.SetToolCount(Bucket.GetToolCount());
-			}
+			UpdateToolCount();
 		}
 	}
 
+	/// <summary>
+	/// Notify to stop animation
+	/// </summary>
+	/// 
 	void NotifyThrowEnd()
 	{
 		if( anim != null )
 		{
 			anim.SetBool("Throw", false);
+		}
+	}
+
+	/// <summary>
+	/// Calculate Throw vector Y form Fork position
+	/// </summary>
+	/// <returns>The throw angle.</returns>
+	public float GetThrowAngle( float TopValue, float BottomValue )
+	{
+		float ForkPercentage = (socketForkPosition.position.y - socketForkBottom.position.y) / (socketForkTop.position.y - socketForkBottom.position.y);
+		float Addition = ( TopValue - BottomValue ) * ForkPercentage;
+		return BottomValue + Addition;
+	}
+
+	public void UpdateToolCount()
+	{
+		if( HUD == null )
+		{
+			HUD = HUDObject.GetComponent<HUDStats> ();
+		}
+
+		if( HUD != null)
+		{
+			HUD.SetToolCount( Bucket.GetToolCount() );
 		}
 	}
 }
