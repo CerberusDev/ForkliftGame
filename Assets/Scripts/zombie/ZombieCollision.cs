@@ -216,7 +216,7 @@ public class ZombieCollision : HasLife
 	/// <param name="finalPunchPart">Where was final punch applied</param>
 	public override void Died( Collider2D finalPunchPart, GameTypes.DamageType dmgType )
 	{
-		Debug.Log (gameObject.name +  ": i died. part: " + finalPunchPart);
+		//Debug.Log (gameObject.name +  ": i died. part: " + finalPunchPart);
 	
 		switch (finalPunchPart.name) 
 		{

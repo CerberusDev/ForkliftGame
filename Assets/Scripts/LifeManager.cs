@@ -84,7 +84,7 @@ public class LifeManager : MonoBehaviour
 			Health -= damage;
 		}
 
-		Debug.Log ("Dmg: " + damage + " type: " + dmgType + " from: " + instigator + "Part: " + damagedPart.name + "Moment: " + momentum );
+		//Debug.Log ("Dmg: " + damage + " type: " + dmgType + " from: " + instigator + "Part: " + damagedPart.name + "Moment: " + momentum );
 		
 		if( !IsAlive() ) 
 		{
