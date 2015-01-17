@@ -87,7 +87,6 @@ public class ToolBucketManager : MonoBehaviour {
 		if( Forklift != null )
 		{
 			Projectile = Instantiate(Prefab,SpawnPoint.position, SpawnPoint.rotation) as GameObject;
-			Projectile.rigidbody2D.centerOfMass = new Vector2(0.0f, 0.11f);
 			Projectile.rigidbody2D.velocity = new Vector2(ThrowVectorX, Forklift.GetThrowAngle(ThrowAngleTopValue, ThrowAngleBottomValue));
 			Projectile.rigidbody2D.AddTorque(-Random.Range(8,12));
 
