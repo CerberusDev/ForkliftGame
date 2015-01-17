@@ -25,6 +25,7 @@ public class ForkCollision : MonoBehaviour
 		if (other.gameObject.tag == "Box")
 		{
 			other.rigidbody2D.mass = 1000.0f;
+			playerScript.ToggleSpecialForkSocket(true);
 		}
 	}
 
@@ -33,6 +34,7 @@ public class ForkCollision : MonoBehaviour
 		if (other.gameObject.tag == "Box")
 		{
 			other.rigidbody2D.mass = 50.0f;
+			playerScript.ToggleSpecialForkSocket(false);
 		}
 	}
 }

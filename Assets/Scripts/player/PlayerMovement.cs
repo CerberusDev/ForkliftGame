@@ -39,6 +39,8 @@ public class PlayerMovement : HasLife
 	Transform socketForkPosition;
 	Transform socketForkTop;
 	Transform socketForkBottom;
+	Transform socketForkSpecial;
+	Transform currentForkBottomSocket;
 	
 	//////////////// 
 	// METHODS
@@ -51,6 +53,8 @@ public class PlayerMovement : HasLife
 		socketForkPosition = forkTransform.FindChild("SocketForkPosition");
 		socketForkTop = transform.FindChild ("SocketForkTop");
 		socketForkBottom = transform.FindChild ("SocketForkBottom");
+		socketForkSpecial = transform.FindChild ("SocketForkSpecial");
+		currentForkBottomSocket = socketForkBottom;
 
 		forkMovement = new Vector2 (0.0f, 0.0f);
 		movementForce = new Vector2 (0.0f, 0.0f);
@@ -100,7 +104,7 @@ public class PlayerMovement : HasLife
 			forkMovement.y = forkSpeed * Time.deltaTime;
 		}
 
-		if (Input.GetKey (KeyCode.DownArrow) && currForkHeight > socketForkBottom.position.y) 
+		if (Input.GetKey (KeyCode.DownArrow) && currForkHeight > currentForkBottomSocket.position.y) 
 		{
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
@@ -123,6 +127,14 @@ public class PlayerMovement : HasLife
 	bool CanChangeDirection( bool desiredDirectionRight )
 	{
 		return Mathf.Abs(playerRigidBody.velocity.x) < changeDirectionTreshold || bWasLastDirectionRight == desiredDirectionRight;
+	}
+
+	public void ToggleSpecialForkSocket(bool bEnabled)
+	{
+		if (bEnabled)
+			currentForkBottomSocket = socketForkSpecial;
+		else
+			currentForkBottomSocket = socketForkBottom;
 	}
 
 	public void OnForkCollision(Collision2D coll) 
