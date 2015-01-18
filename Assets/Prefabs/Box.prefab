@@ -27,6 +27,8 @@ GameObject:
   - 212: {fileID: 21228184}
   - 61: {fileID: 6128186}
   - 50: {fileID: 5028184}
+  - 114: {fileID: 11436594}
+  - 114: {fileID: 11427682}
   m_Layer: 0
   m_Name: Box
   m_TagString: Box
@@ -96,6 +98,31 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 1.63, y: 1.63}
   m_Center: {x: 0, y: 0}
+--- !u!114 &11427682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39891068557bfb94ca89d748eb877fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11436594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3b96b8186c99a438311c025e2bec3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attacks:
+  - type: 6
+    damage: 100
 --- !u!212 &21228184
 SpriteRenderer:
   m_ObjectHideFlags: 1

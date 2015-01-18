@@ -11,7 +11,13 @@ public class ZombieCollision : HasLife
 	public GameObject zombieHeadPrefab;
 	public PhysicsMaterial2D deadZombiePhysicalMaterial;
 
-	enum BodyZone {HEAD, NECK, TORSO};
+	enum BodyZone 
+	{
+		headTop,
+		head,
+		neck,
+		torso
+	};
 
 	Animator anim;
 	ZombieMovement zombieMovementScript;
@@ -48,13 +54,6 @@ public class ZombieCollision : HasLife
 
 	public void OnHeadCollision(Collision2D coll) 
 	{
-		//float hitStrength = coll.relativeVelocity.magnitude;
-
-		//if (Life.IsAlive() && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
-		//{
-			//KillZombie(BodyZone.HEAD, hitStrength);
-		//} 
-		//else
 		if (coll.collider.gameObject.tag == "Player") 
 		{
 			bAttack = true;
@@ -74,34 +73,18 @@ public class ZombieCollision : HasLife
 
 	public void OnHeadTopCollision(Collision2D coll) 
 	{
-		//if (Life.IsAlive() && coll.collider.gameObject.tag == "Fork") 
-		//{
-		//	KillZombie(BodyZone.HEAD, 0.0f);
-		//}
 	}
 
 	public void OnNeckCollision(Collision2D coll) 
 	{
-		//float hitStrength = coll.relativeVelocity.magnitude;
-		//if (Life.IsAlive() && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
-		//{
-		//	KillZombie(BodyZone.NECK, hitStrength);
-		//}
 	}
 
 	public void OnTorsoCollision(Collision2D coll) 
 	{
-		//float hitStrength = coll.relativeVelocity.magnitude;
-		//if (Life.IsAlive() && coll.collider.gameObject.tag == "Fork" && IsAMortalWound(hitStrength)) 
-		//{
 		if( coll.collider.tag == "Fork" )
+		{
 			fork = coll.collider.gameObject;
-
-		//	KillZombie (BodyZone.TORSO, hitStrength);
-		//	Destroy (rigidbody2D);
-		//	myTransform.Translate(new Vector2(0.0f, 0.02f));
-		//	Invoke ("AttachToFork", Random.Range(0.1f, 0.2f));
-		//}
+		}
 	}
 
 	public void OnLegsCollision(Collision2D coll) 
@@ -160,13 +143,19 @@ public class ZombieCollision : HasLife
 		{
 			switch (woundZone) 
 			{
-			case BodyZone.HEAD:
+			case BodyZone.headTop:
+				anim.SetTrigger ("Death");
+				
+				Destroy (gameObject, destroyDelay);
+				break;
+
+			case BodyZone.head:
 				anim.SetTrigger ("Death");
 
 				Destroy (gameObject, destroyDelay);
 				break;
 
-			case BodyZone.NECK:
+			case BodyZone.neck:
 				anim.SetTrigger ("HeadlessDeath");
 				
 				GameObject head = (GameObject)Instantiate(zombieHeadPrefab, 
@@ -181,11 +170,17 @@ public class ZombieCollision : HasLife
 				Destroy (gameObject, destroyDelay);
 				break;
 
-			case BodyZone.TORSO:
+			case BodyZone.torso:
 				anim.SetTrigger ("Pierced");
 				bPierced = true;
 				break;
 			}
+		}
+		// death from box
+		else if( dmgType == GameTypes.DamageType.World_Box )
+		{
+			anim.SetTrigger ("Death");
+			Destroy (gameObject, destroyDelay);
 		}
 		// normal death
 		else
@@ -201,10 +196,22 @@ public class ZombieCollision : HasLife
 	/// <returns>The damage.</returns>
 	/// <param name="originalDamage">Original damage.</param>
 	/// <param name="momentum">Momentum.</param>
-	public override int ReduceDamage( int originalDamage, float momentum )
+	public override int ReduceDamage( int originalDamage, float momentum, GameTypes.DamageType dmgType, Collider2D damagedPart )
 	{
 		// saved for Death // soft hax :D
 		lastDamageMomentum = momentum;
+
+		// zombie jumped on Fork
+		if( damagedPart.name == "ZombieLegs")
+		{
+			originalDamage = 0;
+		}
+
+		// box can damage only HeadTop of zombie
+		if( dmgType == GameTypes.DamageType.World_Box && damagedPart.name != "ZombieHeadTop" )
+		{
+			originalDamage = 0;
+		}
 
 		// check for deadly wound
 		return IsAMortalWound(momentum) ? originalDamage : originalDamage / 10 ;
@@ -221,16 +228,16 @@ public class ZombieCollision : HasLife
 		switch (finalPunchPart.name) 
 		{
 		case "ZombieHeadTop":
-			KillZombie(BodyZone.HEAD, lastDamageMomentum, dmgType);
+			KillZombie(BodyZone.headTop, lastDamageMomentum, dmgType);
 			break;
 		case "ZombieHead":
-			KillZombie(BodyZone.HEAD, 0.0f, dmgType);
+			KillZombie(BodyZone.head, 0.0f, dmgType);
 			break;
 		case "ZombieNeck":
-			KillZombie(BodyZone.NECK, lastDamageMomentum, dmgType);
+			KillZombie(BodyZone.neck, lastDamageMomentum, dmgType);
 			break;
 		case "ZombieTorso":
-			KillZombie (BodyZone.TORSO, lastDamageMomentum, dmgType);
+			KillZombie (BodyZone.torso, lastDamageMomentum, dmgType);
 			if( dmgType == GameTypes.DamageType.Player_Fork)
 			{
 				Destroy (rigidbody2D);

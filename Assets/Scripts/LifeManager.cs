@@ -47,11 +47,9 @@ public class LifeManager : MonoBehaviour
 			if (damagedPart.name == "ZombieHeadTop")
 				momentum += 2.0f;
 
-			if( damagedPart.name == "ZombieLegs")
-				damage = 0;
 			//special case end
 
-			damage = life.ReduceDamage( damage, momentum );
+			damage = life.ReduceDamage( damage, momentum, dmgType, damagedPart );
 
 			// Notify HUD about damage
 			if( gameObject.tag == "Player" && damage > 0)
@@ -89,6 +87,7 @@ public class LifeManager : MonoBehaviour
 		if( !IsAlive() ) 
 		{
 			life.Died( damagedPart, dmgType );
+			print (damagedPart + " " + dmgType);
 		}
 	}
 }

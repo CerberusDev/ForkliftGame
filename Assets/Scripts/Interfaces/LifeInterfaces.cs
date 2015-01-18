@@ -21,7 +21,7 @@ public class HasLife : MonoBehaviour
 	/// Handles all reducing damage mechanic
 	/// </summary>
 	/// <returns>The damage.</returns>
-	public virtual int ReduceDamage ( int originalDamage, float momentum )
+	public virtual int ReduceDamage ( int originalDamage, float momentum, GameTypes.DamageType dmgType, Collider2D damagedPart )
 	{
 		return originalDamage;
 	}

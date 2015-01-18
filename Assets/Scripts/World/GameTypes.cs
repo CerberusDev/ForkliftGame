@@ -15,7 +15,8 @@ public class GameTypes : MonoBehaviour {
 		Zombie_Pistol,
 		Player_Tool,
 		Player_Fork,
-		World_Barrel
+		World_Barrel,
+		World_Box
 	}
 
 	public enum AttackModes
@@ -27,9 +28,6 @@ public class GameTypes : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		///////////////
-		/// DAMAGE
-		///////////////
 	}
 	
 	// Update is called once per frame
