@@ -70,26 +70,6 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110122572
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110226496}
-  m_DstState: {fileID: 110217108}
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: Pierced
-    m_EventTreshold: 0
-    m_ExitTime: 1
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
 --- !u!1101 &110138820
 Transition:
   serializedVersion: 2
@@ -126,26 +106,6 @@ Transition:
     m_ConditionEvent: Attack
     m_EventTreshold: 0
     m_ExitTime: .5
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
---- !u!1101 &110173948
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110281624}
-  m_DstState: {fileID: 110285564}
-  m_TransitionDuration: 0
-  m_TransitionOffset: .20728296
-  m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: Attack
-    m_EventTreshold: 0
-    m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -240,21 +200,6 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110217108
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: ZombieHeadlessDeadBody
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: 0fd187d341d8cb14f84a1557e565fec9, type: 2}
-  m_ParentStateMachine: {fileID: 110785230}
-  m_Position: {x: 516, y: 156, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
 --- !u!1102 &110225966
 State:
   m_ObjectHideFlags: 3
@@ -315,21 +260,6 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110285564
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: ZombieDeadBody
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: 00e5ae38d38f5a145b8cc9a616f4c37e, type: 2}
-  m_ParentStateMachine: {fileID: 110785230}
-  m_Position: {x: 516, y: 12, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
 --- !u!1107 &110785230
 StateMachine:
   serializedVersion: 2
@@ -341,10 +271,8 @@ StateMachine:
   m_States:
   - {fileID: 110225966}
   - {fileID: 110281624}
-  - {fileID: 110285564}
   - {fileID: 110229232}
   - {fileID: 110226496}
-  - {fileID: 110217108}
   - {fileID: 110212984}
   - {fileID: 110205802}
   m_ChildStateMachine: []
@@ -362,10 +290,6 @@ StateMachine:
       - {fileID: 110160400}
     data:
       first: {fileID: 110281624}
-      second:
-      - {fileID: 110173948}
-    data:
-      first: {fileID: 110285564}
       second: []
     data:
       first: {fileID: 110229232}
@@ -373,10 +297,6 @@ StateMachine:
       - {fileID: 110183046}
     data:
       first: {fileID: 110226496}
-      second:
-      - {fileID: 110122572}
-    data:
-      first: {fileID: 110217108}
       second: []
     data:
       first: {fileID: 110212984}

@@ -686,7 +686,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkBottom
   m_TagString: Untagged
-  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1817,7 +1817,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketToolSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2022,7 +2022,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkSpecial
   m_TagString: Untagged
-  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3162,7 +3162,7 @@ GameObject:
   m_Layer: 0
   m_Name: SocketRearWheel
   m_TagString: Untagged
-  m_Icon: {fileID: 866134395, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4958,7 +4958,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkTop
   m_TagString: Untagged
-  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7030,7 +7030,7 @@ GameObject:
   m_Layer: 10
   m_Name: SocketForkPosition
   m_TagString: Untagged
-  m_Icon: {fileID: -215833656, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7645,7 +7645,7 @@ GameObject:
   m_Layer: 0
   m_Name: SocketEngineSmoke
   m_TagString: Untagged
-  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -11035,7 +11035,7 @@ GameObject:
   m_Layer: 0
   m_Name: SocketFrontWheel
   m_TagString: Untagged
-  m_Icon: {fileID: 866134395, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
