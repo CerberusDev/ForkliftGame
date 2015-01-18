@@ -10,28 +10,41 @@ public class ZombieSpawner : MonoBehaviour {
 
 	public float spawnInterval = 3.0f;
 	public GameObject[] zombiePrefabs;
+	public bool bInitialEnabled = false;
 
 	Transform spawnPoint;
-	float timer;
+	bool bEnabled;
 
-	void Start () {
+	void Start () 
+	{
 		spawnPoint = transform;
-		timer = 0.0f;
+		bEnabled = bInitialEnabled;
+		SpawnZombie ();
 	}
 
-	void Update () {
-		timer -= Time.deltaTime;
-
-		if (timer <= 0.0f) {
-			SpawnZombie();
-			timer += spawnInterval;
+	void SpawnZombie() 
+	{
+		if (bEnabled)
+		{
+			int randomZombiePrefabIndex = Random.Range(0, zombiePrefabs.Length);
+			GameObject randomZombiePrefab = zombiePrefabs [randomZombiePrefabIndex];
+			
+			Instantiate (randomZombiePrefab, spawnPoint.position, spawnPoint.rotation);
+			
+			Invoke ("SpawnZombie", spawnInterval);
 		}
 	}
 
-	void SpawnZombie() {
-		int randomZombiePrefabIndex = Random.Range(0, zombiePrefabs.Length);
-		GameObject randomZombiePrefab = zombiePrefabs [randomZombiePrefabIndex];
+	public void Toggle(bool bNewEnabled)
+	{
+		if (bEnabled != bNewEnabled)
+		{
+			bEnabled = bNewEnabled;
 
-		Instantiate (randomZombiePrefab, spawnPoint.position, spawnPoint.rotation);
+			if (bEnabled)
+				SpawnZombie();
+			else
+				CancelInvoke("SpawnZombie");
+		}
 	}
 }
