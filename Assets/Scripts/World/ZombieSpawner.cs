@@ -8,7 +8,8 @@ using System.Collections;
 
 public class ZombieSpawner : MonoBehaviour {
 
-	public float spawnInterval = 3.0f;
+	public float meanSpawnInterval = 3.0f;
+	public float spawnIntervalDeviation = 1.0f;
 	public GameObject[] zombiePrefabs;
 	public bool bInitialEnabled = false;
 
@@ -31,7 +32,8 @@ public class ZombieSpawner : MonoBehaviour {
 			
 			Instantiate (randomZombiePrefab, spawnPoint.position, spawnPoint.rotation);
 			
-			Invoke ("SpawnZombie", spawnInterval);
+			Invoke ("SpawnZombie", Random.Range(meanSpawnInterval - spawnIntervalDeviation, 
+			                                    meanSpawnInterval + spawnIntervalDeviation));
 		}
 	}
 
