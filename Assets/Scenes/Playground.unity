@@ -1053,7 +1053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a042457baf186d340811b7a853118136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 4
+  meanSpawnInterval: 3
+  spawnIntervalDeviation: 1
   zombiePrefabs:
   - {fileID: 190462, guid: 200502411970f0c4ea58a9c740417e0e, type: 2}
   bInitialEnabled: 1
@@ -3614,7 +3615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a042457baf186d340811b7a853118136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 3
+  meanSpawnInterval: 3
+  spawnIntervalDeviation: 1
   zombiePrefabs:
   - {fileID: 190462, guid: 200502411970f0c4ea58a9c740417e0e, type: 2}
   bInitialEnabled: 1
@@ -8138,7 +8140,7 @@ Transform:
   - {fileID: 314501850}
   - {fileID: 1691493428}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
 --- !u!61 &1726250008
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9441,7 +9443,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!1 &1972628444
 GameObject:
   m_ObjectHideFlags: 0

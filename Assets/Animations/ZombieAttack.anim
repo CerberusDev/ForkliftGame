@@ -17,18 +17,18 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: -0
+    - time: 0
+      value: {fileID: 21300008, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
+    - time: .25
       value: {fileID: 21300000, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
-    - time: .1875
-      value: {fileID: 21300002, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
-    - time: .375
-      value: {fileID: 21300004, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
     - time: .4375
+      value: {fileID: 21300002, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
+    - time: .625
+      value: {fileID: 21300004, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
+    - time: .6875
       value: {fileID: 21300006, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
-    - time: .5625
-      value: {fileID: 21300008, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
     - time: .75
-      value: {fileID: 21300008, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
+      value: {fileID: 21300006, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -47,12 +47,12 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
+    - {fileID: 21300008, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
     - {fileID: 21300000, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
     - {fileID: 21300002, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
     - {fileID: 21300004, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
     - {fileID: 21300006, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
-    - {fileID: 21300008, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
-    - {fileID: 21300008, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
+    - {fileID: 21300006, guid: 7980f1dbab293974db5a225c3fbb1c14, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
@@ -73,7 +73,7 @@ AnimationClip:
   m_EditorCurves: []
   m_EulerEditorCurves: []
   m_Events:
-  - time: .75
+  - time: 0
     functionName: NotifyAttack
     data: 
     objectReferenceParameter: {fileID: 0}
