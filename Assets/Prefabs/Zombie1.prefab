@@ -79,6 +79,7 @@ GameObject:
   - 95: {fileID: 9590468}
   - 114: {fileID: 11498956}
   - 114: {fileID: 11427220}
+  - 61: {fileID: 6141948}
   m_Layer: 13
   m_Name: Zombie1
   m_TagString: ZombieMelee
@@ -193,7 +194,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.4400005, y: 2.98000002, z: 0}
+  m_LocalPosition: {x: 6.69000006, y: -47.1199989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452448}
@@ -278,6 +279,17 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: .423440814, y: .140258849}
   m_Center: {x: -.291837215, y: -.058195889}
+--- !u!61 &6141948
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190462}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .136933416, y: .708780766}
+  m_Center: {x: -.243972778, y: .3282547}
 --- !u!61 &6152448
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -309,8 +321,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .620000005, y: .64497304}
-  m_Center: {x: -.00807777047, y: .0394576788}
+  m_Size: {x: .469180822, y: .64497304}
+  m_Center: {x: -.0834876597, y: .0394567251}
 --- !u!61 &6190468
 BoxCollider2D:
   m_ObjectHideFlags: 1
