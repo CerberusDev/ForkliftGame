@@ -18,6 +18,7 @@ public class PlayerMovement : HasLife
 
 	private ToolBucketManager Bucket;
 	Animator anim;
+	bool bThrowingAnimInProgress = false;
 
 	//////////////// 
 	// MOVEMENT PLAYER
@@ -183,11 +184,12 @@ public class PlayerMovement : HasLife
 	{
 		if( Bucket != null)
 		{
-			if( Bucket.CanThrowTool())
+			if( Bucket.CanThrowTool() && !bThrowingAnimInProgress)
 			{
 				if( anim != null )
 				{
-					anim.SetBool("Throw", true);
+					anim.SetTrigger("Throw");
+					bThrowingAnimInProgress = true;
 				}
 			}
 		}
@@ -212,12 +214,9 @@ public class PlayerMovement : HasLife
 	/// 
 	void NotifyThrowEnd()
 	{
-		if( anim != null )
-		{
-			anim.SetBool("Throw", false);
-		}
+		bThrowingAnimInProgress = false;
 	}
-
+	
 	/// <summary>
 	/// Calculate Throw vector Y form Fork position
 	/// </summary>
