@@ -87,7 +87,7 @@ public class LifeManager : MonoBehaviour
 		if( !IsAlive() ) 
 		{
 			life.Died( damagedPart, dmgType );
-			print (damagedPart + " " + dmgType);
+			//print (damagedPart + " " + dmgType);
 		}
 	}
 }
