@@ -4448,7 +4448,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkBottom
   m_TagString: Untagged
-  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7510,7 +7510,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketToolSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9517,7 +9517,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkSpecial
   m_TagString: Untagged
-  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13753,7 +13753,7 @@ GameObject:
   m_Layer: 0
   m_Name: SocketRearWheel
   m_TagString: Untagged
-  m_Icon: {fileID: 866134395, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -18468,7 +18468,7 @@ GameObject:
   m_Layer: 0
   m_Name: PS_ExhaustSmoke
   m_TagString: Untagged
-  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -18774,15 +18774,15 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .298118651
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          value: .296130925
+          inSlope: .56398809
+          outSlope: .56398809
+          tangentMode: 10
         - time: 1
-          value: 1
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
+          value: .860119045
+          inSlope: .56398809
+          outSlope: .56398809
+          tangentMode: 10
         m_PreInfinity: 2
         m_PostInfinity: 2
       minCurve:
@@ -18802,18 +18802,13 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 1
   RotationModule:
-    enabled: 0
+    enabled: 1
     curve:
-      scalar: .785398185
+      scalar: 1.04719758
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: 1
           value: 1
           inSlope: 0
           outSlope: 0
@@ -18824,28 +18819,23 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: 1
-          value: 0
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 3
   ColorModule:
     enabled: 1
     gradient:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4278190080
+          rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 4290493371
+          rgba: 12303291
         key2:
           serializedVersion: 2
           rgba: 0
@@ -21951,7 +21941,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkTop
   m_TagString: Untagged
-  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -32059,7 +32049,7 @@ GameObject:
   m_Layer: 10
   m_Name: SocketForkPosition
   m_TagString: Untagged
-  m_Icon: {fileID: -215833656, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -42150,10 +42140,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToolMax: 5
   ToolRespawnTime: 5
-  ToolImage: {fileID: 0}
   ThrowVectorX: 10
   Prefab: {fileID: 134488, guid: aeb54fe16e280934592ca9c0f900a10b, type: 2}
   SpawnPoint: {fileID: 314501850}
+  BucketImages:
+  - {fileID: 21300000, guid: a0440933a20c2024599a1923d046ac5c, type: 3}
+  - {fileID: 21300002, guid: a0440933a20c2024599a1923d046ac5c, type: 3}
+  - {fileID: 21300004, guid: a0440933a20c2024599a1923d046ac5c, type: 3}
 --- !u!95 &1726250019
 Animator:
   serializedVersion: 3
@@ -46877,6 +46870,18 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11430108, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: BucketImages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: RotationModule.curve.maxCurve.m_Curve.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: RotationModule.curve.minCurve.m_Curve.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.69000006
@@ -46925,6 +46930,85 @@ Prefab:
       propertyPath: HUDObject
       value: 
       objectReference: {fileID: 2119064812}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: RotationModule.curve.scalar
+      value: 1.04719758
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: RotationModule.curve.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: RotationModule.curve.minCurve.m_Curve.Array.data[0].value
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: RotationModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: ColorModule.gradient.maxGradient.key0.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: .296130925
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: .860119045
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
+      value: .56398809
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
+      value: .56398809
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].tangentMode
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
+      value: .56398809
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
+      value: .56398809
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].tangentMode
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: ColorModule.gradient.maxGradient.key1.rgba
+      value: 12303291
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430108, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: BucketImages.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: a0440933a20c2024599a1923d046ac5c,
+        type: 3}
+    - target: {fileID: 11430108, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: BucketImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300002, guid: a0440933a20c2024599a1923d046ac5c,
+        type: 3}
+    - target: {fileID: 11430108, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: BucketImages.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300004, guid: a0440933a20c2024599a1923d046ac5c,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
   m_RootGameObject: {fileID: 1726250006}
@@ -48094,7 +48178,7 @@ GameObject:
   m_Layer: 0
   m_Name: SocketFrontWheel
   m_TagString: Untagged
-  m_Icon: {fileID: 866134395, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

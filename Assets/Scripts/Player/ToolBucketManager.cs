@@ -11,7 +11,6 @@ public class ToolBucketManager : MonoBehaviour {
 	int ToolCount;
 	public int ToolMax;
 	public float ToolRespawnTime;
-	public GameObject ToolImage;
 
 	// throw mechanic
 	public float ThrowVectorX;
@@ -21,6 +20,9 @@ public class ToolBucketManager : MonoBehaviour {
 	float ThrowAngleTopValue;
 	float ThrowAngleBottomValue;
 
+	// tool in bucket images
+	public Sprite[] BucketImages;
+	SpriteRenderer BucketImage;
 
 	PlayerMovement Forklift;
 	GameObject Projectile;
@@ -32,14 +34,10 @@ public class ToolBucketManager : MonoBehaviour {
 		ThrowAngleTopValue = 8.0f;
 		ThrowAngleBottomValue = -4.0f;
 		Forklift = gameObject.GetComponent<PlayerMovement>();
+
+		BucketImage = GameObject.Find("ToolBucket").GetComponent<SpriteRenderer>();	
 	}
 	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-	}
-
 	/// <summary>
 	/// Determines whether this instance can throw tool.
 	/// </summary>
@@ -66,6 +64,8 @@ public class ToolBucketManager : MonoBehaviour {
 		{
 			Forklift.UpdateToolCount();
 		}
+
+		UpdateBucketImage();
 
 		// invoke again to replenish all tools in same interval.
 		if( ToolCount < ToolMax )
@@ -97,6 +97,16 @@ public class ToolBucketManager : MonoBehaviour {
 			{
 				Invoke("RespawnTool", ToolRespawnTime);
 			}
+
+			UpdateBucketImage();
+		}
+	}
+
+	void UpdateBucketImage()
+	{
+		if( BucketImage != null && BucketImages.Length > 2)
+		{
+			BucketImage.sprite = BucketImages[ToolCount > 1 ? 2 : ToolCount];
 		}
 	}
 }
