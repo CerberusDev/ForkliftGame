@@ -194,7 +194,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.69000006, y: -47.1199989, z: 0}
+  m_LocalPosition: {x: 18.2633533, y: -47.0281296, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452448}
@@ -410,6 +410,7 @@ MonoBehaviour:
   zombieHeadPrefab: {fileID: 128138, guid: 1690161b4ad3d5943b266b7b6839b072, type: 2}
   deadZombiePhysicalMaterial: {fileID: 6200000, guid: f962e745dac8272419f3f041d11d2c1e,
     type: 2}
+  PSBloodTemplate: {fileID: 19872452, guid: aa3dd9b345aadd7429c89cb630f3428d, type: 2}
 --- !u!114 &11490466
 MonoBehaviour:
   m_ObjectHideFlags: 1

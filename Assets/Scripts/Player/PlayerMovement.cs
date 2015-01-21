@@ -30,6 +30,8 @@ public class PlayerMovement : HasLife
 	public float changeDirectionTreshold = 2.0f;
 
 	public GameObject LevelStart, LevelEnd;
+
+	public ParticleSystem PSEngineSmoke;
 	//////////////// 
 	// MOVEMENT FORK
 	////////////////
@@ -175,6 +177,8 @@ public class PlayerMovement : HasLife
 				HUD.SetLevelProgress((transform.position.x - LevelStart.transform.position.x) / (LevelEnd.transform.position.x - LevelStart.transform.position.x));
 			}
 		}
+
+		UpdatePSEngineSmoke();
 	}
 
 	/// <summary>
@@ -238,6 +242,14 @@ public class PlayerMovement : HasLife
 		if( HUD != null)
 		{
 			HUD.SetToolCount( Bucket.GetToolCount() );
+		}
+	}
+
+	void UpdatePSEngineSmoke()
+	{
+		if( playerRigidBody.velocity.magnitude > 0.1f )
+		{
+			PSEngineSmoke.emissionRate = Mathf.Max( playerRigidBody.velocity.magnitude * 8, 3);
 		}
 	}
 }

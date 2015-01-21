@@ -172,7 +172,7 @@ public class ZombieCollision : HasLife
 
 				headRigidbody2D.AddForce(new Vector2(Random.Range(15.0f, 35.0f) * hitStrength, 
 				                                     Random.Range(40.0f, 60.0f) * hitStrength));
-				headRigidbody2D.AddTorque(Random.Range(-5.0f, hitStrength * hitStrength));
+				headRigidbody2D.AddTorque(Random.Range(-5.0f, hitStrength * hitStrength)); // x2
 
 				Destroy (gameObject, destroyDelay);
 				break;
