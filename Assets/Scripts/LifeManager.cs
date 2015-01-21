@@ -37,7 +37,7 @@ public class LifeManager : MonoBehaviour
 	/// <param name="instigator">Who was responsible for this madness</param>
 	/// <param name="damagedPart">Which part was damaged</param>
 	/// <param name="momentum">Relative velocity between colliders</param>
-	public void TakeDamage(int damage, GameTypes.DamageType dmgType, GameObject instigator, Collider2D damagedPart, float momentum )
+	public void TakeDamage(int damage, GameTypes.DamageType dmgType, GameObject instigator, Collider2D damagedPart, Vector2 worldLocation, float momentum )
 	{
 		life = gameObject.GetComponent<HasLife>();
 
@@ -86,7 +86,7 @@ public class LifeManager : MonoBehaviour
 		
 		if( !IsAlive() ) 
 		{
-			life.Died( damagedPart, dmgType );
+			life.Died( damagedPart, worldLocation, dmgType );
 			//print (damagedPart + " " + dmgType);
 		}
 	}

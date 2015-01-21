@@ -22,7 +22,7 @@ public class BoxCollision : MonoBehaviour
 		{
 			if( Weapon != null )
 			{
-				Weapon.GiveDamageTo(coll.gameObject, GameTypes.AttackModes.Primary, coll.collider, coll.relativeVelocity.magnitude );
+				Weapon.GiveDamageTo(coll.gameObject, GameTypes.AttackModes.Primary, coll.collider, coll.contacts[0].point, coll.relativeVelocity.magnitude );
 			}
 		}
 	}

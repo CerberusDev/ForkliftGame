@@ -143,14 +143,14 @@ public class PlayerMovement : HasLife
 		// is Zombie
 		if( coll.collider.gameObject.tag == "ZombieMelee" || coll.gameObject.tag == "ZombieMelee")
 		{
-			Weapon.GiveDamageTo(coll.gameObject, GameTypes.AttackModes.Primary, coll.collider, coll.relativeVelocity.magnitude );
+			Weapon.GiveDamageTo(coll.gameObject, GameTypes.AttackModes.Primary, coll.collider, coll.contacts[0].point, coll.relativeVelocity.magnitude );
 		}
 	}
 
 	/// <summary>
 	/// If called, someone just died
 	/// </summary>
-	public override void Died( Collider2D finalPunchPart, GameTypes.DamageType dmgType )
+	public override void Died( Collider2D finalPunchPart, Vector2 worldLocation, GameTypes.DamageType dmgType )
 	{
 		Debug.Log ("I, forklift... just died");
 		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);

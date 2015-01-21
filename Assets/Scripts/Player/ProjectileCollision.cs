@@ -22,7 +22,7 @@ public class ProjectileCollision : MonoBehaviour {
 	{
 		if( coll.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
-			ForkliftWeapon.GiveDamageTo(coll.gameObject,GameTypes.AttackModes.Secondary, coll.collider, coll.relativeVelocity.magnitude);
+			ForkliftWeapon.GiveDamageTo(coll.gameObject,GameTypes.AttackModes.Secondary, coll.collider, coll.contacts[0].point, coll.relativeVelocity.magnitude);
 			Destroy(gameObject);
 		}
 	}

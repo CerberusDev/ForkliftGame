@@ -36,6 +36,9 @@ public class ZombieCollision : HasLife
 
 	float lastDamageMomentum;
 
+	public ParticleSystem PSBloodTemplate;
+	ParticleSystem PSBlood;
+
 	void Start () 
 	{
 		anim = GetComponent<Animator> ();
@@ -49,7 +52,7 @@ public class ZombieCollision : HasLife
 
 	private void NotifyAttack()
 	{
-		Weapon.GiveDamageTo(forklift, GameTypes.AttackModes.Primary, forklift.collider2D, 1.0f);
+		Weapon.GiveDamageTo(forklift, GameTypes.AttackModes.Primary, forklift.collider2D, transform.position, 1.0f);
 	}
 
 	public void OnHeadCollision(Collision2D coll) 
@@ -163,9 +166,13 @@ public class ZombieCollision : HasLife
 				                                          socketHeadSpawnPoint.rotation);
 				
 				Rigidbody2D headRigidbody2D = head.GetComponent<Rigidbody2D>();
+
+				//attach blood particle
+				PSBlood.transform.parent = head.transform;
+
 				headRigidbody2D.AddForce(new Vector2(Random.Range(15.0f, 35.0f) * hitStrength, 
 				                                     Random.Range(40.0f, 60.0f) * hitStrength));
-				headRigidbody2D.AddTorque(Random.Range(-5.0f, 20.0f));
+				headRigidbody2D.AddTorque(Random.Range(-5.0f, hitStrength * hitStrength));
 
 				Destroy (gameObject, destroyDelay);
 				break;
@@ -221,19 +228,24 @@ public class ZombieCollision : HasLife
 	/// If called, someone just died
 	/// </summary>
 	/// <param name="finalPunchPart">Where was final punch applied</param>
-	public override void Died( Collider2D finalPunchPart, GameTypes.DamageType dmgType )
+	public override void Died( Collider2D finalPunchPart, Vector2 worldLocation, GameTypes.DamageType dmgType )
 	{
 		//Debug.Log (gameObject.name +  ": i died. part: " + finalPunchPart);
-	
+
+		PSBlood = Instantiate(PSBloodTemplate, worldLocation, Quaternion.identity ) as ParticleSystem;
+
 		switch (finalPunchPart.name) 
 		{
 		case "ZombieHeadTop":
+			PSBlood.transform.parent = socketHeadSpawnPoint.transform;
 			KillZombie(BodyZone.headTop, lastDamageMomentum, dmgType);
 			break;
 		case "ZombieHead":
+			PSBlood.transform.parent = transform;
 			KillZombie(BodyZone.head, 0.0f, dmgType);
 			break;
 		case "ZombieNeck":
+			// blood attached in KillZombie function
 			KillZombie(BodyZone.neck, lastDamageMomentum, dmgType);
 			break;
 		case "ZombieTorso":
@@ -242,6 +254,12 @@ public class ZombieCollision : HasLife
 			{
 				Destroy (rigidbody2D);
 				myTransform.Translate(new Vector2(0.0f, 0.02f));
+
+				// attach and slow down blood flow
+				PSBlood.transform.parent = transform;
+				PSBlood.playbackSpeed = 0.5f;
+				PSBlood.gravityModifier = 3.0f;
+
 				Invoke ("AttachToFork", Random.Range(0.1f, 0.2f));
 			}
 			break;

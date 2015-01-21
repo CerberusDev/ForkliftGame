@@ -27,11 +27,11 @@ public class CanAttack : MonoBehaviour
 	/// <param name="attaackMode">Attack mode</param>
 	/// <param name="damagedPart">Which part of victim was damaged</param>
 	/// <param name="momentum"> Relative velocity between colliders </param>
-	public void GiveDamageTo(GameObject victim, GameTypes.AttackModes attaackMode, Collider2D damagedPart, float momentum )
+	public void GiveDamageTo(GameObject victim, GameTypes.AttackModes attaackMode, Collider2D damagedPart, Vector2 worldLocation, float momentum )
 	{
 		if ((int)attaackMode >= 0)
 		{
-			victim.GetComponent<LifeManager>().TakeDamage( attacks[(int)attaackMode].damage, attacks[(int)attaackMode].type, gameObject, damagedPart, momentum );
+			victim.GetComponent<LifeManager>().TakeDamage( attacks[(int)attaackMode].damage, attacks[(int)attaackMode].type, gameObject, damagedPart, worldLocation, momentum );
 		}
 	}
 }

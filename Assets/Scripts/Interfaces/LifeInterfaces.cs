@@ -15,7 +15,7 @@ public class HasLife : MonoBehaviour
 	/// If called, someone just died
 	/// </summary>
 	/// <param name="finalPunchPart">Where was final punch applied</param>
-	public virtual void Died( Collider2D finalPunchPart, GameTypes.DamageType dmgType ){}
+	public virtual void Died( Collider2D finalPunchPart, Vector2 worldLocation, GameTypes.DamageType dmgType ){}
 
 	/// <summary>
 	/// Handles all reducing damage mechanic
