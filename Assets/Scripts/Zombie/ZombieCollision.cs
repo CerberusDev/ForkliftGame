@@ -14,7 +14,8 @@ public class ZombieCollision : HasLife
 	public AudioClip[] zombieRoarSounds;
 	public AudioClip[] zombieDeathSounds;
 	
-	float roarSoundInterval = 5.0f;
+	float roarSoundIntervalMin = 3.0f;
+	float roarSoundIntervalMax = 5.0f;
 
 	enum BodyZone 
 	{
@@ -31,6 +32,7 @@ public class ZombieCollision : HasLife
 	Rigidbody2D	myRigidbody2D;
 	GameObject fork;
 	GameObject forklift;
+	SpriteRenderer mySpriteRenerer;
 
 	Vector2 jumpImpulse = new Vector2 (0.0f, 1500.0f);
 	float destroyDelay = 10.0f;
@@ -51,16 +53,21 @@ public class ZombieCollision : HasLife
 		socketHeadSpawnPoint = transform.FindChild ("SocketHeadSpawnPoint");
 		myTransform = transform;
 		myRigidbody2D = rigidbody2D;
-
+		mySpriteRenerer = GetComponent<SpriteRenderer> ();
 		Weapon = GetComponent<CanAttack>();
 
-		Invoke ("PlayRoarSound", roarSoundInterval);
+
+		Invoke ("PlayRoarSound", Random.Range(roarSoundIntervalMin, roarSoundIntervalMax));
 	}
 	
 	void PlayRoarSound()
 	{
-		AudioSource.PlayClipAtPoint (zombieRoarSounds[Random.Range(0, zombieRoarSounds.Length)], myTransform.position);
-		Invoke ("PlayRoarSound", roarSoundInterval);
+		if (mySpriteRenerer.isVisible)
+		{
+			AudioSource.PlayClipAtPoint (zombieRoarSounds[Random.Range(0, zombieRoarSounds.Length)], myTransform.position);
+		}
+
+		Invoke ("PlayRoarSound", Random.Range(roarSoundIntervalMin, roarSoundIntervalMax));
 	}
 
 	private void NotifyAttack()
@@ -68,7 +75,7 @@ public class ZombieCollision : HasLife
 		if (IsInvoking("PlayRoarSound"))
 		{
 			CancelInvoke("PlayRoarSound");
-			Invoke ("PlayRoarSound", roarSoundInterval);
+			Invoke ("PlayRoarSound", Random.Range(roarSoundIntervalMin, roarSoundIntervalMax));
 		}
 
 		Weapon.GiveDamageTo(forklift, GameTypes.AttackModes.Primary, forklift.collider2D, transform.position, 1.0f);
