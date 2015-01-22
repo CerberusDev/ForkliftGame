@@ -20,6 +20,8 @@ public class PlayerMovement : HasLife
 	Animator anim;
 	bool bThrowingAnimInProgress = false;
 	AudioSource engineAudioSource;
+	AudioSource forkAudioSource;
+
 	//////////////// 
 	// MOVEMENT PLAYER
 	////////////////
@@ -72,6 +74,7 @@ public class PlayerMovement : HasLife
 		Bucket = GetComponent<ToolBucketManager>();
 		anim = GetComponent<Animator>();
 		engineAudioSource = GetComponent<AudioSource> ();
+		forkAudioSource = forkTransform.GetComponent<AudioSource> ();
 
 		SetEngineSmokePS(false);
 		Invoke("DelayedEngineSmoke", 0.5f);
@@ -130,7 +133,9 @@ public class PlayerMovement : HasLife
 		forkTransform.Translate(forkMovement);
 		// move player
 		playerRigidBody.AddForce(movementForce);
+		
 
+		forkAudioSource.mute = (forkMovement.y == 0.0f);
 		engineAudioSource.pitch = 1.5f + Mathf.Abs (playerRigidBody.velocity.x) / 6.0f;
 	}
 
