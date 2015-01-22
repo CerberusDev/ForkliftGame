@@ -268,12 +268,10 @@ public class ZombieCollision : HasLife
 		{
 		case "ZombieHeadTop":
 			PSBlood.transform.parent = socketHeadSpawnPoint.transform;
-			//zombieMovementScript.RotateZombieOnDeath();
 			KillZombie(BodyZone.headTop, lastDamageMomentum, dmgType);
 			break;
 		case "ZombieHead":
-			PSBlood.transform.parent = transform;
-			//zombieMovementScript.RotateZombieOnDeath();
+			PSBlood.transform.parent = socketHeadSpawnPoint.transform;
 			KillZombie(BodyZone.head, 0.0f, dmgType);
 			break;
 		case "ZombieNeck":
