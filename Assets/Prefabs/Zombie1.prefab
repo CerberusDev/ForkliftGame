@@ -194,7 +194,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.68000007, y: -45.5200005, z: 0}
+  m_LocalPosition: {x: 6.69000006, y: -47.1199989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452448}
@@ -419,6 +419,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c2dd1ee5320b5014a8b84ea1114e67c6, type: 3}
   - {fileID: 8300000, guid: 2e99cb1d87628e34ebf4d6fb0c2ab3c4, type: 3}
   PSBloodTemplate: {fileID: 19872452, guid: aa3dd9b345aadd7429c89cb630f3428d, type: 2}
+  PSBlood_LongTemplate: {fileID: 19853588, guid: a5f3e5c18267b294090c922aae8aedf7,
+    type: 2}
 --- !u!114 &11490466
 MonoBehaviour:
   m_ObjectHideFlags: 1

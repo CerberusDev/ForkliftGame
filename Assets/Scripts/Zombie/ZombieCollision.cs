@@ -44,6 +44,7 @@ public class ZombieCollision : HasLife
 	float lastDamageMomentum;
 
 	public ParticleSystem PSBloodTemplate;
+	public ParticleSystem PSBlood_LongTemplate;
 	ParticleSystem PSBlood;
 
 	void Start () 
@@ -262,23 +263,25 @@ public class ZombieCollision : HasLife
 	{
 		//Debug.Log (gameObject.name +  ": i died. part: " + finalPunchPart);
 
-		PSBlood = Instantiate(PSBloodTemplate, worldLocation, Quaternion.identity ) as ParticleSystem;
-
 		switch (finalPunchPart.name) 
 		{
 		case "ZombieHeadTop":
+			PSBlood = Instantiate(PSBloodTemplate, worldLocation, Quaternion.identity ) as ParticleSystem;
 			PSBlood.transform.parent = socketHeadSpawnPoint.transform;
 			KillZombie(BodyZone.headTop, lastDamageMomentum, dmgType);
 			break;
 		case "ZombieHead":
+			PSBlood = Instantiate(PSBloodTemplate, worldLocation, Quaternion.identity ) as ParticleSystem;
 			PSBlood.transform.parent = socketHeadSpawnPoint.transform;
 			KillZombie(BodyZone.head, 0.0f, dmgType);
 			break;
 		case "ZombieNeck":
+			PSBlood = Instantiate(PSBloodTemplate, worldLocation, Quaternion.identity ) as ParticleSystem;
 			// blood attached in KillZombie function
 			KillZombie(BodyZone.neck, lastDamageMomentum, dmgType);
 			break;
 		case "ZombieTorso":
+			PSBlood = Instantiate(PSBlood_LongTemplate, worldLocation, Quaternion.identity ) as ParticleSystem;
 			KillZombie (BodyZone.torso, lastDamageMomentum, dmgType);
 			if( dmgType == GameTypes.DamageType.Player_Fork)
 			{
