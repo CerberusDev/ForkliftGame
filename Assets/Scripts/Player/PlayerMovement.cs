@@ -32,6 +32,7 @@ public class PlayerMovement : HasLife
 	public GameObject LevelStart, LevelEnd;
 
 	public ParticleSystem PSEngineSmoke;
+	bool bEngineSmokeEnabled;
 	//////////////// 
 	// MOVEMENT FORK
 	////////////////
@@ -71,6 +72,9 @@ public class PlayerMovement : HasLife
 		Bucket = GetComponent<ToolBucketManager>();
 		anim = GetComponent<Animator>();
 		engineAudioSource = GetComponent<AudioSource> ();
+
+		SetEngineSmokePS(false);
+		Invoke("DelayedEngineSmoke", 0.5f);
 	}
 
 	void FixedUpdate () 
@@ -181,7 +185,10 @@ public class PlayerMovement : HasLife
 			}
 		}
 
-		UpdatePSEngineSmoke();
+		if( bEngineSmokeEnabled )
+		{
+			UpdatePSEngineSmoke();
+		}
 	}
 
 	/// <summary>
@@ -247,12 +254,30 @@ public class PlayerMovement : HasLife
 			HUD.SetToolCount( Bucket.GetToolCount() );
 		}
 	}
-
+	
+	void SetEngineSmokePS( bool inState )
+	{
+		bEngineSmokeEnabled = inState;
+		if( inState )
+		{
+			PSEngineSmoke.Play();
+		}
+		else
+		{
+			PSEngineSmoke.Stop();
+		}
+	}
+	
+	void DelayedEngineSmoke()
+	{
+		SetEngineSmokePS(true);
+	}
+	
 	void UpdatePSEngineSmoke()
 	{
-		if( playerRigidBody.velocity.magnitude > 0.1f )
+		if(	playerRigidBody.velocity.magnitude > 0.01f )
 		{
-			PSEngineSmoke.emissionRate = Mathf.Max( playerRigidBody.velocity.magnitude * 8, 3);
+			PSEngineSmoke.emissionRate = Mathf.Max( playerRigidBody.velocity.magnitude * 10, 3);
 		}
 	}
 }

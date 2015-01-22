@@ -18488,7 +18488,7 @@ ParticleSystem:
     type: 2}
   m_PrefabInternal: {fileID: 2013361591}
   m_GameObject: {fileID: 747202665}
-  lengthInSec: 4
+  lengthInSec: 3
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -18499,7 +18499,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 4
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -48631,6 +48631,18 @@ Prefab:
       propertyPath: HUDObject
       value: 
       objectReference: {fileID: 2119064812}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: lengthInSec
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19831758, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0475aebf3ed87ae4f874e252c680dfab, type: 2}
   m_RootGameObject: {fileID: 1726250006}
