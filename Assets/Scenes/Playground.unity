@@ -2848,6 +2848,14 @@ MonoBehaviour:
   zombieHeadPrefab: {fileID: 128138, guid: 1690161b4ad3d5943b266b7b6839b072, type: 2}
   deadZombiePhysicalMaterial: {fileID: 6200000, guid: f962e745dac8272419f3f041d11d2c1e,
     type: 2}
+  zombieAttackSound: {fileID: 8300000, guid: be6d2f871a9290549b46dd182fa643b3, type: 3}
+  zombieRoarSounds:
+  - {fileID: 8300000, guid: 20755548449e06f44906c8d0c86f63a3, type: 3}
+  - {fileID: 8300000, guid: 34e66369cf2e8914591790d4928364da, type: 3}
+  zombieDeathSounds:
+  - {fileID: 8300000, guid: 3df3c376519599e4a90257656ec90f72, type: 3}
+  - {fileID: 8300000, guid: c2dd1ee5320b5014a8b84ea1114e67c6, type: 3}
+  - {fileID: 8300000, guid: 2e99cb1d87628e34ebf4d6fb0c2ab3c4, type: 3}
   PSBloodTemplate: {fileID: 19872452, guid: aa3dd9b345aadd7429c89cb630f3428d, type: 2}
 --- !u!114 &72679378
 MonoBehaviour:
@@ -12162,8 +12170,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: abcbf575647d7bb4e9f9d3aabeabdc60, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_PlayOnAwake: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -30315,6 +30323,14 @@ MonoBehaviour:
   zombieHeadPrefab: {fileID: 128138, guid: 1690161b4ad3d5943b266b7b6839b072, type: 2}
   deadZombiePhysicalMaterial: {fileID: 6200000, guid: f962e745dac8272419f3f041d11d2c1e,
     type: 2}
+  zombieAttackSound: {fileID: 8300000, guid: be6d2f871a9290549b46dd182fa643b3, type: 3}
+  zombieRoarSounds:
+  - {fileID: 8300000, guid: 20755548449e06f44906c8d0c86f63a3, type: 3}
+  - {fileID: 8300000, guid: 34e66369cf2e8914591790d4928364da, type: 3}
+  zombieDeathSounds:
+  - {fileID: 8300000, guid: 3df3c376519599e4a90257656ec90f72, type: 3}
+  - {fileID: 8300000, guid: c2dd1ee5320b5014a8b84ea1114e67c6, type: 3}
+  - {fileID: 8300000, guid: 2e99cb1d87628e34ebf4d6fb0c2ab3c4, type: 3}
   PSBloodTemplate: {fileID: 19872452, guid: aa3dd9b345aadd7429c89cb630f3428d, type: 2}
 --- !u!114 &1227441356
 MonoBehaviour:
@@ -41951,6 +41967,7 @@ GameObject:
   - 114: {fileID: 1726250017}
   - 114: {fileID: 1726250016}
   - 114: {fileID: 1726250018}
+  - 82: {fileID: 1726250020}
   m_Layer: 8
   m_Name: Forklift
   m_TagString: Player
@@ -42166,6 +42183,65 @@ Animator:
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!82 &1726250020
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8270772, guid: 0475aebf3ed87ae4f874e252c680dfab,
+    type: 2}
+  m_PrefabInternal: {fileID: 2013361591}
+  m_GameObject: {fileID: 1726250006}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 146b23d863ea5ca46ad26873ce299eb1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .100000001
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1726631052
 GameObject:
   m_ObjectHideFlags: 0
@@ -49670,6 +49746,14 @@ MonoBehaviour:
   zombieHeadPrefab: {fileID: 128138, guid: 1690161b4ad3d5943b266b7b6839b072, type: 2}
   deadZombiePhysicalMaterial: {fileID: 6200000, guid: f962e745dac8272419f3f041d11d2c1e,
     type: 2}
+  zombieAttackSound: {fileID: 8300000, guid: be6d2f871a9290549b46dd182fa643b3, type: 3}
+  zombieRoarSounds:
+  - {fileID: 8300000, guid: 20755548449e06f44906c8d0c86f63a3, type: 3}
+  - {fileID: 8300000, guid: 34e66369cf2e8914591790d4928364da, type: 3}
+  zombieDeathSounds:
+  - {fileID: 8300000, guid: 3df3c376519599e4a90257656ec90f72, type: 3}
+  - {fileID: 8300000, guid: c2dd1ee5320b5014a8b84ea1114e67c6, type: 3}
+  - {fileID: 8300000, guid: 2e99cb1d87628e34ebf4d6fb0c2ab3c4, type: 3}
   PSBloodTemplate: {fileID: 19872452, guid: aa3dd9b345aadd7429c89cb630f3428d, type: 2}
 --- !u!114 &2065560989
 MonoBehaviour:

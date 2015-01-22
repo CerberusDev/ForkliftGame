@@ -19,7 +19,7 @@ public class PlayerMovement : HasLife
 	private ToolBucketManager Bucket;
 	Animator anim;
 	bool bThrowingAnimInProgress = false;
-
+	AudioSource engineAudioSource;
 	//////////////// 
 	// MOVEMENT PLAYER
 	////////////////
@@ -70,6 +70,7 @@ public class PlayerMovement : HasLife
 		Weapon = GetComponent<CanAttack> ();
 		Bucket = GetComponent<ToolBucketManager>();
 		anim = GetComponent<Animator>();
+		engineAudioSource = GetComponent<AudioSource> ();
 	}
 
 	void FixedUpdate () 
@@ -125,6 +126,8 @@ public class PlayerMovement : HasLife
 		forkTransform.Translate(forkMovement);
 		// move player
 		playerRigidBody.AddForce(movementForce);
+
+		engineAudioSource.pitch = 1.5f + Mathf.Abs (playerRigidBody.velocity.x) / 6.0f;
 	}
 
 	bool CanChangeDirection( bool desiredDirectionRight )
