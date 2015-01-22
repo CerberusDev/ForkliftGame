@@ -10,6 +10,11 @@ public class ZombieCollision : HasLife
 {
 	public GameObject zombieHeadPrefab;
 	public PhysicsMaterial2D deadZombiePhysicalMaterial;
+	public AudioClip zombieAttackSound;
+	public AudioClip[] zombieRoarSounds;
+	public AudioClip[] zombieDeathSounds;
+	
+	float roarSoundInterval = 5.0f;
 
 	enum BodyZone 
 	{
@@ -48,11 +53,26 @@ public class ZombieCollision : HasLife
 		myRigidbody2D = rigidbody2D;
 
 		Weapon = GetComponent<CanAttack>();
+
+		Invoke ("PlayRoarSound", roarSoundInterval);
+	}
+	
+	void PlayRoarSound()
+	{
+		AudioSource.PlayClipAtPoint (zombieRoarSounds[Random.Range(0, zombieRoarSounds.Length)], myTransform.position);
+		Invoke ("PlayRoarSound", roarSoundInterval);
 	}
 
 	private void NotifyAttack()
 	{
+		if (IsInvoking("PlayRoarSound"))
+		{
+			CancelInvoke("PlayRoarSound");
+			Invoke ("PlayRoarSound", roarSoundInterval);
+		}
+
 		Weapon.GiveDamageTo(forklift, GameTypes.AttackModes.Primary, forklift.collider2D, transform.position, 1.0f);
+		AudioSource.PlayClipAtPoint (zombieAttackSound, myTransform.position);
 	}
 
 	public void OnHeadCollision(Collision2D coll) 
@@ -129,6 +149,9 @@ public class ZombieCollision : HasLife
 	void KillZombie(BodyZone woundZone, float hitStrength, GameTypes.DamageType dmgType ) 
 	{
 		int deadEnemyLayer = LayerMask.NameToLayer("DeadEnemy");
+
+		CancelInvoke ("PlayRoarSound");
+		AudioSource.PlayClipAtPoint (zombieDeathSounds[Random.Range(0, zombieDeathSounds.Length)], myTransform.position);
 
 		gameObject.layer = deadEnemyLayer;
 		myTransform.FindChild ("ZombieLegs").gameObject.layer = deadEnemyLayer;
