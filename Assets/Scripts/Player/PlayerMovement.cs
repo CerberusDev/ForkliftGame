@@ -122,7 +122,7 @@ public class PlayerMovement : HasLife
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
-		if (Input.GetKey(KeyCode.Z)) 
+		if (Input.GetKey(KeyCode.Space)) 
 		{
 			TryToThrowTool();
 		}
