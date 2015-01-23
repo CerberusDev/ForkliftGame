@@ -213,6 +213,13 @@ public class PlayerMovement : HasLife
 		bBlockInput = true;
 		AudioSource.PlayClipAtPoint (forkliftDeathSound, transform.position);
 		engineAudioSource.mute = true;
+
+		Invoke ("ReloadLevel", 4.0f);
+	}
+
+	void ReloadLevel()
+	{
+		Application.LoadLevel (Application.loadedLevel);
 	}
 	
 	void Update()
