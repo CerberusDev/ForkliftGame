@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿// Forklift Game
+//
+// Script author: Alan Kwiatkowski, Maciej Pryc
+// Created: 2015/01/17
+
+using UnityEngine;
 using System.Collections;
 
-public class ProjectileCollision : MonoBehaviour {
+public class ProjectileCollision : MonoBehaviour 
+{
+	public AudioClip projectileHitSound;
 
 	private GameObject Owner;
 	private CanAttack ForkliftWeapon;
-
-	// Use this for initialization
-	void Start(){}
-	
-	// Update is called once per frame
-	void Update (){}
 
 	public void SetOwner( GameObject inOwner )
 	{
@@ -20,6 +21,11 @@ public class ProjectileCollision : MonoBehaviour {
 
 	void OnCollisionEnter2D( Collision2D coll )
 	{
+		if (coll.relativeVelocity.magnitude > 1.0f)
+		{
+			AudioSource.PlayClipAtPoint(projectileHitSound, transform.position);
+		}
+
 		if( coll.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
 			ForkliftWeapon.GiveDamageTo(coll.gameObject,GameTypes.AttackModes.Secondary, coll.collider, coll.contacts[0].point, coll.relativeVelocity.magnitude);
