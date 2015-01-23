@@ -38,7 +38,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -63,39 +63,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 840
-        width: 244
-        height: 280
+        y: 846
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_1
       rect:
         serializedVersion: 2
-        x: 244
-        y: 840
-        width: 244
-        height: 280
+        x: 246
+        y: 846
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_2
       rect:
         serializedVersion: 2
-        x: 488
-        y: 840
-        width: 244
-        height: 280
+        x: 492
+        y: 846
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_3
       rect:
         serializedVersion: 2
-        x: 732
-        y: 840
-        width: 244
-        height: 280
+        x: 738
+        y: 846
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -103,39 +103,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 560
-        width: 244
-        height: 280
+        y: 564
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_5
       rect:
         serializedVersion: 2
-        x: 244
-        y: 560
-        width: 244
-        height: 280
+        x: 246
+        y: 564
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_6
       rect:
         serializedVersion: 2
-        x: 488
-        y: 560
-        width: 244
-        height: 280
+        x: 492
+        y: 564
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_7
       rect:
         serializedVersion: 2
-        x: 732
-        y: 560
-        width: 244
-        height: 280
+        x: 738
+        y: 564
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,39 +143,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 280
-        width: 244
-        height: 280
+        y: 282
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_9
       rect:
         serializedVersion: 2
-        x: 244
-        y: 280
-        width: 244
-        height: 280
+        x: 246
+        y: 282
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_10
       rect:
         serializedVersion: 2
-        x: 488
-        y: 280
-        width: 244
-        height: 280
+        x: 492
+        y: 282
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_11
       rect:
         serializedVersion: 2
-        x: 732
-        y: 280
-        width: 244
-        height: 280
+        x: 738
+        y: 282
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,38 +184,38 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 244
-        height: 280
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_13
       rect:
         serializedVersion: 2
-        x: 244
+        x: 246
         y: 0
-        width: 244
-        height: 280
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_14
       rect:
         serializedVersion: 2
-        x: 488
+        x: 492
         y: 0
-        width: 244
-        height: 280
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: t_forklift1_corps_throw_15
       rect:
         serializedVersion: 2
-        x: 732
+        x: 738
         y: 0
-        width: 244
-        height: 280
+        width: 246
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
