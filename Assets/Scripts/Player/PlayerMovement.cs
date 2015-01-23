@@ -32,6 +32,8 @@ public class PlayerMovement : HasLife
 	Vector2 movementForce;
 	bool bWasLastDirectionRight;
 	public float changeDirectionTreshold = 2.0f;
+	bool bBlockInput = false;
+	public AudioClip forkliftDeathSound;
 
 	public GameObject LevelStart, LevelEnd;
 
@@ -94,37 +96,40 @@ public class PlayerMovement : HasLife
 		////     INPUT     ////
 		///////////////////////
 
-		if (Input.GetKey(KeyCode.RightArrow)) 
+		if (!bBlockInput)
 		{
-			if(CanChangeDirection(true))
+			if (Input.GetKey(KeyCode.RightArrow)) 
 			{
-				movementForce.x = movementSpeed;
-				bWasLastDirectionRight = true;
+				if(CanChangeDirection(true))
+				{
+					movementForce.x = movementSpeed;
+					bWasLastDirectionRight = true;
+				}
 			}
-		}
-
-		if (Input.GetKey (KeyCode.LeftArrow)) 
-		{
-			if(CanChangeDirection(false))
+			
+			if (Input.GetKey (KeyCode.LeftArrow)) 
 			{
-				movementForce.x = -movementSpeed;
-				bWasLastDirectionRight = false;
+				if(CanChangeDirection(false))
+				{
+					movementForce.x = -movementSpeed;
+					bWasLastDirectionRight = false;
+				}
 			}
-		}
-
-		if (Input.GetKey(KeyCode.UpArrow) && currForkHeight < socketForkTop.position.y) 
-		{
-			forkMovement.y = forkSpeed * Time.deltaTime;
-		}
-
-		if (Input.GetKey (KeyCode.DownArrow) && currForkHeight > currentForkBottomSocket.position.y) 
-		{
-			forkMovement.y -= forkSpeed * Time.deltaTime;
-		}
-
-		if (Input.GetKey(KeyCode.Space)) 
-		{
-			TryToThrowTool();
+			
+			if (Input.GetKey(KeyCode.UpArrow) && currForkHeight < socketForkTop.position.y) 
+			{
+				forkMovement.y = forkSpeed * Time.deltaTime;
+			}
+			
+			if (Input.GetKey (KeyCode.DownArrow) && currForkHeight > currentForkBottomSocket.position.y) 
+			{
+				forkMovement.y -= forkSpeed * Time.deltaTime;
+			}
+			
+			if (Input.GetKey(KeyCode.Space)) 
+			{
+				TryToThrowTool();
+			}
 		}
 
 		//////////////////////
@@ -177,7 +182,10 @@ public class PlayerMovement : HasLife
 	public override void Died( Collider2D finalPunchPart, Vector2 worldLocation, GameTypes.DamageType dmgType )
 	{
 		Debug.Log ("I, forklift... just died");
-		gameObject.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+		anim.SetTrigger("Death");
+		bBlockInput = true;
+		AudioSource.PlayClipAtPoint (forkliftDeathSound, transform.position);
+		engineAudioSource.mute = true;
 	}
 	
 	void Update()

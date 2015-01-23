@@ -72,7 +72,7 @@ public class LifeManager : MonoBehaviour
 						}
 						else
 						{
-							// TODO: jebnac ekeft obrazen na wozku
+							// TODO: dodac ekeft obrazen na wozku
 							//HUD.damage
 						}
 					}
@@ -80,14 +80,14 @@ public class LifeManager : MonoBehaviour
 			}
 
 			Health -= damage;
+
+			if( !IsAlive() ) 
+			{
+				life.Died( damagedPart, worldLocation, dmgType );
+				//print (damagedPart + " " + dmgType);
+			}
 		}
 
 		//Debug.Log ("Dmg: " + damage + " type: " + dmgType + " from: " + instigator + "Part: " + damagedPart.name + "Moment: " + momentum );
-		
-		if( !IsAlive() ) 
-		{
-			life.Died( damagedPart, worldLocation, dmgType );
-			//print (damagedPart + " " + dmgType);
-		}
 	}
 }
