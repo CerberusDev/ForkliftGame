@@ -11,6 +11,8 @@ public class LifeManager : MonoBehaviour
 	HasLife life;
 	public int Health;
 
+	Animator forkliftScratchesAnim;
+
 	// hud object
 	public GameObject HUDObject;
 	// stat script in hud object
@@ -50,10 +52,29 @@ public class LifeManager : MonoBehaviour
 			//special case end
 
 			damage = life.ReduceDamage( damage, momentum, dmgType, damagedPart );
+			Health -= damage;
 
 			// Notify HUD about damage
 			if( gameObject.tag == "Player" && damage > 0)
 			{
+				if (forkliftScratchesAnim == null)
+				{
+					forkliftScratchesAnim = gameObject.transform.FindChild("Scratches").GetComponent<Animator>();
+				}
+
+				int i;
+
+				if (IsAlive())
+				{
+					i = (int)((100.0f - Health) / 33.0f);
+				}
+				else
+				{
+					i = 3;
+				}
+
+				forkliftScratchesAnim.SetInteger("ScratchesIndex", i);
+
 				//init for first time. function Start and Awake did it to early. dunno why
 				if( HUDObject != null )
 				{
@@ -78,8 +99,6 @@ public class LifeManager : MonoBehaviour
 					}
 				}
 			}
-
-			Health -= damage;
 
 			if( !IsAlive() ) 
 			{
