@@ -104,6 +104,11 @@ public class PlayerMovement : HasLife
 	{
 		bBlockInput = inState;
 		AudioListener.pause = inState;
+
+		if (inState == false)
+		{
+			engineAudioSource.Play ();
+		}
 	}
 
 	void FixedUpdate () 
