@@ -248,8 +248,6 @@ public class ZombieCollision : HasLife
 			anim.SetTrigger ("Death");
 			Destroy (gameObject, destroyDelay);
 		}
-
-		Debug.Log (dmgType);
 	}
 
 	/// <summary>
