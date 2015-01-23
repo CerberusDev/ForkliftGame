@@ -134,9 +134,17 @@ public class PlayerMovement : HasLife
 		forkTransform.Translate(forkMovement);
 		// move player
 		playerRigidBody.AddForce(movementForce);
-		
 
-		forkAudioSource.mute = (forkMovement.y == 0.0f);
+		if (forkMovement.y == 0.0f) 
+		{
+			forkAudioSource.volume = Mathf.Max(0.0f, forkAudioSource.volume - 0.05f);
+		}
+		else
+		{
+			forkAudioSource.volume = Mathf.Min(0.6f, forkAudioSource.volume + 0.2f);
+		}
+
+		forkAudioSource.pitch = 0.7f + forkAudioSource.volume / 3.0f;
 		engineAudioSource.pitch = 1.5f + Mathf.Abs (playerRigidBody.velocity.x) / 6.0f;
 	}
 
