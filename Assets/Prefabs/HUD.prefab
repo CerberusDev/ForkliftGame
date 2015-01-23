@@ -669,7 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 6c9f998e55e11974a8ae560891973c14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8ba4b4a0ac44bd41ade805cf7df22fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -788,14 +788,14 @@ Canvas:
   m_GameObject: {fileID: 191544}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1256606363
   m_SortingOrder: 0
 --- !u!224 &22426202
 RectTransform:
@@ -811,10 +811,10 @@ RectTransform:
   - {fileID: 22426206}
   m_Father: {fileID: 22491544}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: 0}
-  m_AnchorMax: {x: .5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: 610, y: 40}
+  m_SizeDelta: {x: -508, y: 40}
   m_Pivot: {x: .5, y: 0}
 --- !u!224 &22426204
 RectTransform:
@@ -847,10 +847,10 @@ RectTransform:
   - {fileID: 22426210}
   m_Father: {fileID: 22426202}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 600, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: -10, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22426208
 RectTransform:
