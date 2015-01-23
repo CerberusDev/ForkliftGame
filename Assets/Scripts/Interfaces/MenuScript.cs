@@ -24,6 +24,9 @@ public class MenuScript : MonoBehaviour
 		MainCharacterScript = MainCharacter.GetComponent<PlayerMovement>();
 		SetEnable(true);
 		MainMusic.Stop();
+		Menu_instructions.enabled = false;
+		Menu_stats.enabled = false;
+
 	}
 
 	public void SetEnable( bool inState )
@@ -68,6 +71,9 @@ public class MenuScript : MonoBehaviour
 			break;
 		case 1:
 			print ("Instructions");
+			Menu_start.enabled = false;
+
+			Menu_instructions.enabled = true;
 
 			break;
 		case 2:
@@ -83,6 +89,10 @@ public class MenuScript : MonoBehaviour
 		switch (action)
 		{
 		case 0:
+			print ("back from instructions");
+
+			Menu_instructions.enabled = false;
+			Menu_start.enabled = true;
 			break;
 		}
 	}
