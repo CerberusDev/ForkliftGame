@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.07999992, y: -47.0900002, z: 0}
+  m_LocalPosition: {x: 15.6999998, y: -46.8800011, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
   spawnIntervalDeviation: 1
   zombiePrefabs:
   - {fileID: 190462, guid: 200502411970f0c4ea58a9c740417e0e, type: 2}
-  bInitialEnabled: 1
+  bInitialEnabled: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
