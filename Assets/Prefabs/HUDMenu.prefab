@@ -614,6 +614,8 @@ MonoBehaviour:
   Menu_instructions: {fileID: 0}
   Menu_stats: {fileID: 0}
   Background: {fileID: 22354410}
+  MainMusic: {fileID: 0}
+  MainCharacter: {fileID: 0}
 --- !u!114 &11473226
 MonoBehaviour:
   m_ObjectHideFlags: 1

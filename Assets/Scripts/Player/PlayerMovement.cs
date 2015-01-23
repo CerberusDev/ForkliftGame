@@ -56,6 +56,11 @@ public class PlayerMovement : HasLife
 	// METHODS
 	////////////////
 	/// 
+	void Start()
+	{
+		BlockGame(true);
+	}
+
 	void Awake () 
 	{
 		playerRigidBody = GetComponent<Rigidbody2D> ();
@@ -82,6 +87,23 @@ public class PlayerMovement : HasLife
 
 		SetEngineSmokePS(false);
 		Invoke("DelayedEngineSmoke", 0.5f);
+	}
+
+	// main start function, yep, this should be in some SceneManager
+	public void StartGame()
+	{
+		BlockGame(false);
+	}
+
+	public void EndGame()
+	{
+		BlockGame(true);
+	}
+
+	void BlockGame( bool inState )
+	{
+		bBlockInput = inState;
+		AudioListener.pause = inState;
 	}
 
 	void FixedUpdate () 

@@ -12,11 +12,18 @@ public class MenuScript : MonoBehaviour
 	public Canvas Menu_stats;
 	public Canvas Background;
 
+	public AudioSource MainMusic;
+
+	//only for setting game flow, we don't have SceneManager, main char does it.
+	public GameObject MainCharacter;
+	PlayerMovement MainCharacterScript;
 
 	// Use this for initialization
 	void Start () 
 	{
+		MainCharacterScript = MainCharacter.GetComponent<PlayerMovement>();
 		SetEnable(true);
+		MainMusic.Stop();
 	}
 
 	public void SetEnable( bool inState )
@@ -54,6 +61,10 @@ public class MenuScript : MonoBehaviour
 
 			SetEnable(false);
 			Menu_start.enabled = false;
+
+			MainCharacterScript.StartGame();
+			MainMusic.Play();
+
 			break;
 		case 1:
 			print ("Instructions");
