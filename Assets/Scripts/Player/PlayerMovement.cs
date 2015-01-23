@@ -15,8 +15,6 @@ public class PlayerMovement : HasLife
 	public GameObject HUDObject;
 	// stat script in hud object
 	private HUDStats HUD;
-	public GameObject HUDMenuObject;
-	MenuScript HUDMenu;
 
 	private ToolBucketManager Bucket;
 	Animator anim;
@@ -24,9 +22,6 @@ public class PlayerMovement : HasLife
 	AudioSource engineAudioSource;
 	AudioSource forkAudioSource;
 	public AudioClip throwSound;
-
-	int ZombieCount;
-	float TimePlayed;
 
 
 	//////////////// 
@@ -215,29 +210,14 @@ public class PlayerMovement : HasLife
 	{
 		Debug.Log ("I, forklift... just died");
 		anim.SetTrigger("Death");
-		//bBlockInput = true;
+		bBlockInput = true;
 		AudioSource.PlayClipAtPoint (forkliftDeathSound, transform.position);
-		//engineAudioSource.mute = true;
+		engineAudioSource.mute = true;
 
-		EndGame();
-
-		if( HUDMenuObject != null)
-		{
-			if(HUDMenu == null)
-			{
-				HUDMenu = HUDMenuObject.GetComponent<MenuScript>();
-			}
-
-			if( HUDMenu != null)
-			{
-				HUDMenu.ShowStatMenu();
-			}
-		}
-
-
+		Invoke ("ReloadLevel", 4.0f);
 	}
 
-	public void ReloadLevel()
+	void ReloadLevel()
 	{
 		Application.LoadLevel (Application.loadedLevel);
 	}
