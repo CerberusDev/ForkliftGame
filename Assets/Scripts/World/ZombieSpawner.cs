@@ -30,8 +30,10 @@ public class ZombieSpawner : MonoBehaviour {
 			int randomZombiePrefabIndex = Random.Range(0, zombiePrefabs.Length);
 			GameObject randomZombiePrefab = zombiePrefabs [randomZombiePrefabIndex];
 			
-			Instantiate (randomZombiePrefab, spawnPoint.position, spawnPoint.rotation);
-			
+			GameObject zombie = (GameObject) Instantiate (randomZombiePrefab, spawnPoint.position, spawnPoint.rotation);
+			float scale = Random.Range(0.85f, 1.15f);
+			zombie.transform.localScale = new Vector3(scale, scale);
+
 			Invoke ("SpawnZombie", Random.Range(meanSpawnInterval - spawnIntervalDeviation, 
 			                                    meanSpawnInterval + spawnIntervalDeviation));
 		}

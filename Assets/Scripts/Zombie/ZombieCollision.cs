@@ -204,7 +204,8 @@ public class ZombieCollision : HasLife
 				GameObject head = (GameObject)Instantiate(zombieHeadPrefab, 
 				                                          socketHeadSpawnPoint.position, 
 				                                          socketHeadSpawnPoint.rotation);
-				
+
+				head.transform.localScale = myTransform.localScale;
 				Rigidbody2D headRigidbody2D = head.GetComponent<Rigidbody2D>();
 
 				//attach blood particle
