@@ -229,12 +229,27 @@ public class ZombieCollision : HasLife
 			anim.SetTrigger ("Death");
 			Destroy (gameObject, destroyDelay);
 		}
+		else if (dmgType == GameTypes.DamageType.Player_Tool)
+		{
+			if (woundZone == BodyZone.head || woundZone == BodyZone.headTop)
+			{
+				anim.SetTrigger ("ToolDeath");
+			}
+			else
+			{
+				anim.SetTrigger ("Death");
+			}
+
+			Destroy (gameObject, destroyDelay);
+		}
 		// normal death
 		else
 		{
 			anim.SetTrigger ("Death");
 			Destroy (gameObject, destroyDelay);
 		}
+
+		Debug.Log (dmgType);
 	}
 
 	/// <summary>
