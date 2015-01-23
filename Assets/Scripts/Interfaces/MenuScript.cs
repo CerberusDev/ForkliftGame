@@ -102,8 +102,14 @@ public class MenuScript : MonoBehaviour
 		switch (action)
 		{
 		case 0:
-					
-			break;
+			MainCharacterScript.ReloadLevel();
+		break;
 		}
+	}
+
+	public void ShowStatMenu()
+	{
+		SetEnable(true);
+		Menu_stats.enabled = true;
 	}
 }
