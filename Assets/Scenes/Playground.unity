@@ -4461,7 +4461,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkBottom
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7523,7 +7523,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketToolSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9530,7 +9530,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkSpecial
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10523,6 +10523,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11491538, guid: 352a6e2d1cd560a4b9495dc95dc09b3f, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b8ba4b4a0ac44bd41ade805cf7df22fd,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 352a6e2d1cd560a4b9495dc95dc09b3f, type: 2}
   m_RootGameObject: {fileID: 2119064812}
@@ -12130,7 +12135,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: abcbf575647d7bb4e9f9d3aabeabdc60, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: .5
   m_Pitch: 1
   Loop: 1
@@ -13766,7 +13771,7 @@ GameObject:
   m_Layer: 0
   m_Name: SocketRearWheel
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 866134395, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -18541,7 +18546,7 @@ GameObject:
   m_Layer: 0
   m_Name: PS_ExhaustSmoke
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -22014,7 +22019,7 @@ GameObject:
   m_Layer: 8
   m_Name: SocketForkTop
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -514703022, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -32135,7 +32140,7 @@ GameObject:
   m_Layer: 10
   m_Name: SocketForkPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -215833656, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -46870,7 +46875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 6c9f998e55e11974a8ae560891973c14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8ba4b4a0ac44bd41ade805cf7df22fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -48235,7 +48240,7 @@ GameObject:
   m_Layer: 0
   m_Name: SocketFrontWheel
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 866134395, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
