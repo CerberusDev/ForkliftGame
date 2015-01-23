@@ -21,6 +21,7 @@ public class PlayerMovement : HasLife
 	bool bThrowingAnimInProgress = false;
 	AudioSource engineAudioSource;
 	AudioSource forkAudioSource;
+	public AudioClip throwSound;
 
 	//////////////// 
 	// MOVEMENT PLAYER
@@ -222,6 +223,8 @@ public class PlayerMovement : HasLife
 		if( Bucket != null)
 		{
 			Bucket.ThrowTool();
+
+			AudioSource.PlayClipAtPoint(throwSound, transform.position);
 
 			UpdateToolCount();
 		}
