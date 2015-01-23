@@ -611,6 +611,7 @@ MonoBehaviour:
   HUDObject: {fileID: 0}
   HUDMenuObject: {fileID: 0}
   throwSound: {fileID: 8300000, guid: cac01b1fd3c9fcb4394ee0f56cb595ff, type: 3}
+  distanceTraveled: 0
   movementSpeed: 60000
   changeDirectionTreshold: 2
   forkliftDeathSound: {fileID: 8300000, guid: c287dad4c6d33d24b9fe48a753381a7c, type: 3}

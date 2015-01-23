@@ -25,6 +25,7 @@ public class PlayerMovement : HasLife
 	AudioSource forkAudioSource;
 	public AudioClip throwSound;
 
+	public float distanceTraveled;
 
 	//////////////// 
 	// MOVEMENT PLAYER
@@ -229,7 +230,7 @@ public class PlayerMovement : HasLife
 			
 			if( HUDMenu != null)
 			{
-				HUDMenu.ShowStatMenu();
+				HUDMenu.ShowStatMenu(distanceTraveled);
 			}
 		}
 	}
@@ -255,7 +256,8 @@ public class PlayerMovement : HasLife
 			if( HUD != null)
 			{
 				// what percent is player position between LevelStart and LevelEnd
-				HUD.SetLevelProgress((transform.position.x - LevelStart.transform.position.x) / (LevelEnd.transform.position.x - LevelStart.transform.position.x));
+				distanceTraveled = (transform.position.x - LevelStart.transform.position.x) / (LevelEnd.transform.position.x - LevelStart.transform.position.x);
+				HUD.SetLevelProgress(distanceTraveled);
 			}
 		}
 

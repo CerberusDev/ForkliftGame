@@ -4,6 +4,7 @@
 // Created: 2015/01/23
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour 
 {
@@ -13,6 +14,7 @@ public class MenuScript : MonoBehaviour
 	public Canvas Background;
 
 	public AudioSource MainMusic;
+	public Text distance;
 
 	//only for setting game flow, we don't have SceneManager, main char does it.
 	public GameObject MainCharacter;
@@ -79,7 +81,13 @@ public class MenuScript : MonoBehaviour
 		case 2:
 			print ("QUIT");
 
+			#if UNITY_EDITOR
+			UnityEditor.EditorApplication.isPlaying = false;
+			#else
 			Application.Quit();
+			#endif
+
+			//Application.Quit();
 			break;
 		}
 	}
@@ -108,9 +116,11 @@ public class MenuScript : MonoBehaviour
 		}
 	}
 	
-	public void ShowStatMenu()
+	public void ShowStatMenu( float inDistance )
 	{
 		SetEnable(true);
+
 		Menu_stats.enabled = true;
+		distance.text = ((int)(inDistance * 100)).ToString();
 	}
 }
