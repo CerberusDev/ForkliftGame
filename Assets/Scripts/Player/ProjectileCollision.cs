@@ -21,15 +21,17 @@ public class ProjectileCollision : MonoBehaviour
 
 	void OnCollisionEnter2D( Collision2D coll )
 	{
-		if (coll.relativeVelocity.magnitude > 1.0f)
-		{
-			AudioSource.PlayClipAtPoint(projectileHitSound, transform.position);
-		}
-
 		if( coll.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
 			ForkliftWeapon.GiveDamageTo(coll.gameObject,GameTypes.AttackModes.Secondary, coll.collider, coll.contacts[0].point, coll.relativeVelocity.magnitude);
 			Destroy(gameObject);
+		}
+		else
+		{
+			if (coll.relativeVelocity.magnitude > 1.0f)
+			{
+				AudioSource.PlayClipAtPoint(projectileHitSound, transform.position);
+			}
 		}
 	}
 }

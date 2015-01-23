@@ -23,6 +23,7 @@ public class PlayerMovement : HasLife
 	AudioSource forkAudioSource;
 	public AudioClip throwSound;
 
+
 	//////////////// 
 	// MOVEMENT PLAYER
 	////////////////
@@ -121,7 +122,7 @@ public class PlayerMovement : HasLife
 			forkMovement.y -= forkSpeed * Time.deltaTime;
 		}
 
-		if (Input.GetKeyUp(KeyCode.Z)) 
+		if (Input.GetKey(KeyCode.Z)) 
 		{
 			TryToThrowTool();
 		}
