@@ -418,6 +418,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3df3c376519599e4a90257656ec90f72, type: 3}
   - {fileID: 8300000, guid: c2dd1ee5320b5014a8b84ea1114e67c6, type: 3}
   - {fileID: 8300000, guid: 2e99cb1d87628e34ebf4d6fb0c2ab3c4, type: 3}
+  zombieDecapitationSound: {fileID: 8300000, guid: 85dafa8e31f0cd44b82c891b177bf56a,
+    type: 3}
   PSBloodTemplate: {fileID: 19872452, guid: aa3dd9b345aadd7429c89cb630f3428d, type: 2}
   PSBlood_LongTemplate: {fileID: 19853588, guid: a5f3e5c18267b294090c922aae8aedf7,
     type: 2}

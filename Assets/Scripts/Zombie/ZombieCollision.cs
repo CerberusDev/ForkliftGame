@@ -13,7 +13,8 @@ public class ZombieCollision : HasLife
 	public AudioClip zombieAttackSound;
 	public AudioClip[] zombieRoarSounds;
 	public AudioClip[] zombieDeathSounds;
-	
+	public AudioClip zombieDecapitationSound;
+
 	float roarSoundIntervalMin = 3.0f;
 	float roarSoundIntervalMax = 5.0f;
 
@@ -159,7 +160,15 @@ public class ZombieCollision : HasLife
 		int deadEnemyLayer = LayerMask.NameToLayer("DeadEnemy");
 
 		CancelInvoke ("PlayRoarSound");
-		AudioSource.PlayClipAtPoint (zombieDeathSounds[Random.Range(0, zombieDeathSounds.Length)], myTransform.position);
+		
+		if (dmgType == GameTypes.DamageType.Player_Fork && woundZone == BodyZone.neck)
+		{
+			AudioSource.PlayClipAtPoint (zombieDecapitationSound, myTransform.position);
+		}
+		else
+		{
+			AudioSource.PlayClipAtPoint (zombieDeathSounds[Random.Range(0, zombieDeathSounds.Length)], myTransform.position);
+		}
 
 		gameObject.layer = deadEnemyLayer;
 		myTransform.FindChild ("ZombieLegs").gameObject.layer = deadEnemyLayer;
