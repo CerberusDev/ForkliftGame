@@ -156,7 +156,7 @@ public class PlayerMovement : HasLife
 				forkMovement.y -= forkSpeed * Time.deltaTime;
 			}
 			
-			if (Input.GetKey(KeyCode.Space)) 
+			if (Input.GetKey(KeyCode.LeftControl)) 
 			{
 				TryToThrowTool();
 			}
@@ -215,12 +215,18 @@ public class PlayerMovement : HasLife
 		anim.SetTrigger("Death");
 		bBlockInput = true;
 		//bBlockInput = true;
-		AudioSource.PlayClipAtPoint (forkliftDeathSound, transform.position);
+		AudioSource.PlayClipAtPoint(forkliftDeathSound, transform.position);
 		engineAudioSource.mute = true;
 		//engineAudioSource.mute = true;
-		
-		EndGame();
 
+		// delay death
+		Invoke("DiedWorker", 2.0f);
+	}
+
+	public void DiedWorker()
+	{
+		EndGame();
+		
 		if( HUDMenuObject != null)
 		{
 			if(HUDMenu == null)
@@ -230,7 +236,25 @@ public class PlayerMovement : HasLife
 			
 			if( HUDMenu != null)
 			{
-				HUDMenu.ShowStatMenu(distanceTraveled);
+				HUDMenu.ShowStatMenu(distanceTraveled, false);
+			}
+		}
+	}
+
+	public void LevelCompleted()
+	{
+		EndGame();
+		
+		if( HUDMenuObject != null)
+		{
+			if(HUDMenu == null)
+			{
+				HUDMenu = HUDMenuObject.GetComponent<MenuScript>();
+			}
+			
+			if( HUDMenu != null)
+			{
+				HUDMenu.ShowStatMenu(distanceTraveled, true);
 			}
 		}
 	}

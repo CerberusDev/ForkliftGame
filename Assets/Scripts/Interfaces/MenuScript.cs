@@ -11,10 +11,12 @@ public class MenuScript : MonoBehaviour
 	public Canvas Menu_start;
 	public Canvas Menu_instructions;
 	public Canvas Menu_stats;
+	public Canvas Menu_win;
+
 	public Canvas Background;
 
 	public AudioSource MainMusic;
-	public Text distance;
+	public Text distanceLose, distanceWin; //yes it should be the same.
 
 	//only for setting game flow, we don't have SceneManager, main char does it.
 	public GameObject MainCharacter;
@@ -28,7 +30,7 @@ public class MenuScript : MonoBehaviour
 		MainMusic.Stop();
 		Menu_instructions.enabled = false;
 		Menu_stats.enabled = false;
-
+		Menu_win.enabled = false;
 	}
 
 	public void SetEnable( bool inState )
@@ -115,12 +117,32 @@ public class MenuScript : MonoBehaviour
 			break;
 		}
 	}
-	
-	public void ShowStatMenu( float inDistance )
+
+	public void Menu_WinPressed( int action )
+	{
+		switch (action)
+		{
+		case 0:
+			print ("level completed, restarting");
+			
+			MainCharacterScript.ReloadLevel();
+			break;
+		}
+	}
+
+	public void ShowStatMenu( float inDistance, bool bWin )
 	{
 		SetEnable(true);
 
-		Menu_stats.enabled = true;
-		distance.text = ((int)(inDistance * 100)).ToString();
+		if( bWin )
+		{
+			Menu_win.enabled = true;
+			distanceWin.text = ((int)(inDistance * 100)).ToString();
+		}
+		else
+		{
+			Menu_stats.enabled = true;
+			distanceLose.text = ((int)(inDistance * 100)).ToString();
+		}
 	}
 }
