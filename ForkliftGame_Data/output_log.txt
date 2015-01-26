@@ -1,0 +1,32 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660   (ID=0x11c0)
+    Vendor:   NVIDIA
+    VRAM:     1989 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\ForkliftGame\ForkliftGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\ForkliftGame\ForkliftGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\ForkliftGame\ForkliftGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\ForkliftGame\ForkliftGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\ForkliftGame\ForkliftGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\ForkliftGame\ForkliftGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.040 seconds
+desktop: 1680x1050 60Hz; virtual: 5520x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: D:\ForkliftGame\ForkliftGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\ForkliftGame\ForkliftGame_Data\Managed\System.dll (this message is harmless)
+Instructions
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+back from instructions
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Start
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
